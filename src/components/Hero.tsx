@@ -57,7 +57,7 @@ const Hero = () => {
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600 dark:border-blue-400">
                 <img
-                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=AdityaSharma"
+                  src="https://raw.githubusercontent.com/adityashm/portfilio_website/main/public/IMG_1033.JPG"
                   alt="Aditya Sharma"
                   className="w-full h-full object-cover"
                 />
