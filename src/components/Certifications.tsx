@@ -3,6 +3,76 @@ import { Award } from 'lucide-react';
 const Certifications = () => {
   const certifications = [
     {
+      title: 'Adobe Content Creator Specialization Adobe Photoshop - Tips, Tricks, & Tutorials',
+      issuer: 'Adobe',
+      date: 'Oct 2025',
+      credentialId: 'MWICPV47F8N3',
+      link: 'https://www.coursera.org/account/accomplishments/specialization/MWICPV47F8N3'
+    },
+    {
+      title: 'Adobe Graphic Designer',
+      issuer: 'Adobe',
+      date: 'Oct 2025',
+      credentialId: 'LD5ITWS1R4E3',
+      link: 'https://www.coursera.org/account/accomplishments/specialization/LD5ITWS1R4E3'
+    },
+    {
+      title: 'Adobe Marketing Specialist',
+      issuer: 'Adobe',
+      date: 'Oct 2025',
+      credentialId: 'R2RQYR8N0YY9',
+      link: 'https://www.coursera.org/account/accomplishments/specialization/R2RQYR8N0YY9'
+    },
+    {
+      title: 'Digital Marketing',
+      issuer: 'Adobe',
+      date: 'Oct 2025',
+      credentialId: 'GXNKNB9I9JG2',
+      link: 'https://www.coursera.org/account/accomplishments/verify/GXNKNB9I9JG2'
+    },
+    {
+      title: 'Advanced Prompt Engineering with ChatGPT',
+      issuer: 'upGrad',
+      date: 'Sep 2025',
+      credentialId: 'jaNsiYhOz8Mk5FDd',
+      link: 'https://www.upgrad.com/certificates/jaNsiYhOz8Mk5FDd'
+    },
+    {
+      title: 'Graphic Design',
+      issuer: 'Adobe',
+      date: 'Sep 2025',
+      credentialId: 'PORZNEU585D0',
+      link: 'https://www.coursera.org/account/accomplishments/verify/PORZNEU585D0'
+    },
+    {
+      title: 'Deloitte Australia - Cyber Job Simulation',
+      issuer: 'Forage',
+      date: 'Jul 2025',
+      credentialId: 'ttwEQC4uXrticcRDL',
+      link: 'https://forage.com/simulations/ttwEQC4uXrticcRDL'
+    },
+    {
+      title: 'Deloitte Australia - Data Analytics Job Simulation',
+      issuer: 'Forage',
+      date: 'Jul 2025',
+      credentialId: 'avYGWxfBtoGzkTfRp',
+      link: 'https://forage.com/simulations/avYGWxfBtoGzkTfRp'
+    },
+    {
+      title: 'Tata - Data Visualisation: Empowering Business with Effective Insights Job Simulation',
+      issuer: 'Forage',
+      date: 'Jul 2025',
+      credentialId: 'XrxgqYdQ7fTTWPrdd',
+      link: 'https://forage.com/simulations/XrxgqYdQ7fTTWPrdd'
+    },
+    {
+      title: 'Develop GenAI Apps with Gemini and Streamlit',
+      issuer: 'Google',
+      date: 'May 2024',
+      credentialId: '8886977',
+      link: 'https://www.cloudskillsboost.google/public_profiles/244b393c-66e4-4e6b-9155-5ecfcd510c75/badges/8886977'
+    },
+    {
       title: 'Programming for Everybody',
       issuer: 'University of Michigan',
       date: 'Apr 2024',
