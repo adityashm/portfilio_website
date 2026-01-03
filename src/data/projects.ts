@@ -4,9 +4,9 @@ export const projects: ProjectData[] = [
   {
     title: 'Data Analysis & Visualization Dashboard',
     description: 'Professional data analytics dashboard with real-time charts, KPI metrics, and business intelligence. Built with Flask and Plotly for interactive visualizations.',
-    technologies: ['Python', 'Flask', 'Pandas', 'Plotly', 'SQLite'],
+    technologies: ['Python', 'Flask', 'Plotly', 'SQLite'],
     github: 'https://github.com/adityashm/data-analysis-dashboard',
-    live: 'https://data-analysis-dashboard-demo.herokuapp.com',
+    live: 'https://web-production-9b7c.up.railway.app',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80'
   },
   {
