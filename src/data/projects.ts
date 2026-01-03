@@ -22,7 +22,7 @@ export const projects: ProjectData[] = [
     description: 'Enterprise-grade REST API with JWT authentication, SQLAlchemy ORM, and comprehensive documentation. Includes user management, products, and order systems.',
     technologies: ['Python', 'FastAPI', 'SQLAlchemy', 'JWT', 'Pydantic'],
     github: 'https://github.com/adityashm/rest-api-backend',
-    live: 'https://ea0u29gt.up.railway.app',
+    live: 'https://restapii.up.railway.app/docs',
     image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80'
   }
 ];
