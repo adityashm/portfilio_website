@@ -1,5 +1,3 @@
-import React from 'react';
-import { Briefcase } from 'lucide-react';
 import { ExperienceData } from '../types/experience';
 import ExperienceCard from './ExperienceCard';
 

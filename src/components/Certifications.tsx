@@ -95,37 +95,9 @@ const Certifications = () => {
           Certifications & Trainings
         </h2>
 
-        {/* Featured Certificate */}
-        <div className="max-w-4xl mx-auto mb-8 md:mb-12">
-          {certifications.filter(c => c.featured).map((cert, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-900 dark:to-blue-700 rounded-lg p-6 md:p-8 shadow-lg text-white"
-            >
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
-                <div className="flex-1">
-                  <p className="text-blue-100 text-sm md:text-base mb-2">FEATURED</p>
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">
-                    {cert.title}
-                  </h3>
-                  <p className="text-blue-50 font-semibold mb-2">{cert.issuer}</p>
-                  {cert.description && (
-                    <p className="text-blue-100 text-sm md:text-base mb-3">
-                      {cert.description}
-                    </p>
-                  )}
-                  <p className="text-blue-100 text-xs md:text-sm">
-                    {cert.date}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Other Certifications */}
+        {/* All Certifications */}
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {certifications.filter(c => !c.featured).map((cert, index) => (
+          {certifications.map((cert, index) => (
             <div
               key={index}
               className="bg-white dark:bg-gray-900 rounded-lg p-5 md:p-6 shadow-md hover:shadow-lg transition-shadow"

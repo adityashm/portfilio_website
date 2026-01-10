@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Github, Star, GitFork, Eye } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Github, Star, GitFork } from 'lucide-react';
 
 interface GitHubUser {
   public_repos: number;
