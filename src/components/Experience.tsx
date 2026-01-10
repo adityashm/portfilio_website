@@ -5,6 +5,17 @@ import ExperienceCard from './ExperienceCard';
 
 const experiences: ExperienceData[] = [
   {
+    title: 'Summer Internship - Technical Training Program',
+    company: 'India Space Lab ',
+    period: 'Jun 2025 - Jul 2025',
+    description: [
+      'Completed advanced training in Space Science and Technology',
+      'Specialized modules: Advanced Drone Technology, CubeSat and Satellite Programs',
+      'Studied Astronomy, Rocketry, Remote Sensing and Space Entrepreneurship',
+      'Collaborated with industry experts and gained hands-on experience in space technology'
+    ]
+  },
+  {
     title: 'Web Development Intern',
     company: 'Tech Innovators',
     period: 'Jun 2023 - Aug 2023',
@@ -30,9 +41,9 @@ const experiences: ExperienceData[] = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
+    <section id="experience" className="py-16 md:py-20 bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4 md:px-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8 md:mb-12">
           Experience
         </h2>
         <div className="max-w-3xl mx-auto">
