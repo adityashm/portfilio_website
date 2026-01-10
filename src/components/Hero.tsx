@@ -19,8 +19,8 @@ const Hero = () => {
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
               <a
-                href="https://vbxjdrxsnahyaodirxaq.supabase.co/storage/v1/object/public/resume/Aditya%20sharma%20resume.pdf"
-                download
+                href="/Aditya sharma resume.pdf"
+                download="Aditya_Sharma_Resume.pdf"
                 className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <FileText size={20} />
