@@ -1,177 +1,70 @@
-import { useEffect, useState } from 'react';
-import { Github, Star, GitFork } from 'lucide-react';
-
-interface GitHubUser {
-  public_repos: number;
-  followers: number;
-  following: number;
-  created_at: string;
-}
-
-interface Repository {
-  name: string;
-  stargazers_count: number;
-  forks_count: number;
-  language: string;
-  url: string;
-}
+import { Github, Code2, Users } from 'lucide-react';
 
 const GitHubStats = () => {
-  const [user, setUser] = useState<GitHubUser | null>(null);
-  const [repos, setRepos] = useState<Repository[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchGitHubData = async () => {
-      try {
-        // Fetch user data
-        const userRes = await fetch('https://api.github.com/users/adityashm');
-        if (!userRes.ok) {
-          throw new Error(`GitHub API error: ${userRes.status}`);
-        }
-        const userData = await userRes.json();
-        if (userData.message) {
-          throw new Error(userData.message);
-        }
-        setUser(userData);
-
-        // Fetch top repositories
-        const reposRes = await fetch(
-          'https://api.github.com/users/adityashm/repos?sort=stars&per_page=3'
-        );
-        if (!reposRes.ok) {
-          throw new Error(`GitHub API error: ${reposRes.status}`);
-        }
-        const reposData = await reposRes.json();
-        
-        // Ensure reposData is an array
-        if (Array.isArray(reposData)) {
-          setRepos(reposData);
-        } else {
-          console.warn('Expected array from repos API');
-          setRepos([]);
-        }
-      } catch (err) {
-        const errorMsg = err instanceof Error ? err.message : 'Failed to fetch GitHub data';
-        console.error('Error fetching GitHub data:', errorMsg);
-        setError(errorMsg);
-        setUser(null);
-        setRepos([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGitHubData();
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="py-12 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-gray-600 dark:text-gray-400">Loading GitHub stats...</p>
-        </div>
-      </section>
-    );
-  }
-
-  if (!user) {
-    return (
-      <section className="py-12 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-3 mb-8">
-            <Github className="w-8 h-8 text-gray-900 dark:text-white" />
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">GitHub Profile</h2>
-          </div>
-          <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 p-8 rounded-lg shadow text-center">
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              {error ? `Unable to load GitHub stats: ${error}` : 'GitHub stats not available'}
-            </p>
-            <a
-              href="https://github.com/adityashm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:opacity-90 transition-opacity"
-            >
-              <Github size={20} />
-              Visit GitHub Profile
-            </a>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="py-12 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6">
         <div className="flex items-center gap-3 mb-8">
           <Github className="w-8 h-8 text-gray-900 dark:text-white" />
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">GitHub Stats</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">GitHub Profile</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow">
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">Public Repos</p>
-            <p className="text-3xl font-bold text-gray-900 dark:text-white">{user.public_repos}</p>
-          </div>
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow">
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">Followers</p>
-            <p className="text-3xl font-bold text-gray-900 dark:text-white">{user.followers}</p>
-          </div>
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow">
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">Following</p>
-            <p className="text-3xl font-bold text-gray-900 dark:text-white">{user.following}</p>
-          </div>
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow">
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">Member Since</p>
-            <p className="text-lg font-bold text-gray-900 dark:text-white">
-              {new Date(user.created_at).getFullYear()}
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* GitHub Profile Card */}
+          <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-gray-900 dark:bg-white rounded-lg">
+                <Github className="w-6 h-6 text-white dark:text-gray-900" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  @adityashm
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Full Stack Developer
+                </p>
+              </div>
+            </div>
+            <p className="text-gray-700 dark:text-gray-300 mb-6">
+              Open source projects and contributions in Python, React, FastAPI, and Web Development.
             </p>
-          </div>
-        </div>
-
-        <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Top Repositories</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {repos.map((repo) => (
             <a
-              key={repo.name}
-              href={repo.url}
+              href="https://github.com/adityashm"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:opacity-90 transition-opacity font-medium"
             >
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                {repo.name}
-              </h4>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                Language: {repo.language || 'N/A'}
-              </p>
-              <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400">
-                <div className="flex items-center gap-1">
-                  <Star size={16} />
-                  <span>{repo.stargazers_count}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <GitFork size={16} />
-                  <span>{repo.forks_count}</span>
+              <Github size={20} />
+              Visit Profile
+            </a>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+              Projects & Contributions
+            </h3>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Code2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <div>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">Projects</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">
+                    Data Analysis Dashboard, REST API, Web Scraper & More
+                  </p>
                 </div>
               </div>
-            </a>
-          ))}
-        </div>
-
-        <div className="mt-8 text-center">
-          <a
-            href="https://github.com/adityashm"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:opacity-90 transition-opacity"
-          >
-            <Github size={20} />
-            View Full Profile
-          </a>
+              <div className="flex items-center gap-3">
+                <Users className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <div>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">Technologies</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">
+                    Python, React, FastAPI, TypeScript
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
