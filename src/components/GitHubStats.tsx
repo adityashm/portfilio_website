@@ -27,6 +27,11 @@ const GitHubStats = () => {
         // Fetch user data
         const userRes = await fetch('https://api.github.com/users/adityashm');
         const userData = await userRes.json();
+        if (userData.message) {
+          console.error('GitHub API error:', userData.message);
+          setLoading(false);
+          return;
+        }
         setUser(userData);
 
         // Fetch top repositories
@@ -34,9 +39,17 @@ const GitHubStats = () => {
           'https://api.github.com/users/adityashm/repos?sort=stars&per_page=3'
         );
         const reposData = await reposRes.json();
-        setRepos(reposData);
+        
+        // Ensure reposData is an array
+        if (Array.isArray(reposData)) {
+          setRepos(reposData);
+        } else {
+          console.error('Expected array from repos API, got:', typeof reposData);
+          setRepos([]);
+        }
       } catch (error) {
         console.error('Error fetching GitHub data:', error);
+        setRepos([]);
       } finally {
         setLoading(false);
       }
