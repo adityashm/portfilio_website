@@ -48,7 +48,7 @@ const About = () => {
         </div>
         <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-            I'm a second-year B.Tech Computer Science Engineering student with a strong
+            I'm a Third-year B.Tech Computer Science Engineering student with a strong
             passion for technology and innovation. My journey in computer science began
             with curiosity about how software shapes our world, and it has evolved into
             a dedicated pursuit of knowledge and practical skills in various domains of
