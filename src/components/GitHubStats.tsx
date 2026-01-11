@@ -20,17 +20,19 @@ const GitHubStats = () => {
   const [user, setUser] = useState<GitHubUser | null>(null);
   const [repos, setRepos] = useState<Repository[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
         // Fetch user data
         const userRes = await fetch('https://api.github.com/users/adityashm');
+        if (!userRes.ok) {
+          throw new Error(`GitHub API error: ${userRes.status}`);
+        }
         const userData = await userRes.json();
         if (userData.message) {
-          console.error('GitHub API error:', userData.message);
-          setLoading(false);
-          return;
+          throw new Error(userData.message);
         }
         setUser(userData);
 
@@ -38,17 +40,23 @@ const GitHubStats = () => {
         const reposRes = await fetch(
           'https://api.github.com/users/adityashm/repos?sort=stars&per_page=3'
         );
+        if (!reposRes.ok) {
+          throw new Error(`GitHub API error: ${reposRes.status}`);
+        }
         const reposData = await reposRes.json();
         
         // Ensure reposData is an array
         if (Array.isArray(reposData)) {
           setRepos(reposData);
         } else {
-          console.error('Expected array from repos API, got:', typeof reposData);
+          console.warn('Expected array from repos API');
           setRepos([]);
         }
-      } catch (error) {
-        console.error('Error fetching GitHub data:', error);
+      } catch (err) {
+        const errorMsg = err instanceof Error ? err.message : 'Failed to fetch GitHub data';
+        console.error('Error fetching GitHub data:', errorMsg);
+        setError(errorMsg);
+        setUser(null);
         setRepos([]);
       } finally {
         setLoading(false);
@@ -69,7 +77,30 @@ const GitHubStats = () => {
   }
 
   if (!user) {
-    return null;
+    return (
+      <section className="py-12 bg-gray-50 dark:bg-gray-800">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center gap-3 mb-8">
+            <Github className="w-8 h-8 text-gray-900 dark:text-white" />
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">GitHub Profile</h2>
+          </div>
+          <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 p-8 rounded-lg shadow text-center">
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              {error ? `Unable to load GitHub stats: ${error}` : 'GitHub stats not available'}
+            </p>
+            <a
+              href="https://github.com/adityashm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              <Github size={20} />
+              Visit GitHub Profile
+            </a>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
