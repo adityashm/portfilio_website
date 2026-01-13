@@ -2,10 +2,16 @@ import React from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import { ProjectData } from '../types/project';
 import TechnologyBadge from './TechnologyBadge';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const ProjectCard = ({ title, description, technologies, github, live, image }: ProjectData) => {
+  const ref = useScrollAnimation();
+
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col">
+    <div
+      ref={ref}
+      className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all transform hover:scale-105 h-full flex flex-col opacity-0"
+    >
       <img
         src={image}
         alt={title}
