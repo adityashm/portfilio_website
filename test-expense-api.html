@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker API Demo</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .result {
+            background: #1a1a1a;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-top: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .highlight {
+            background: yellow;
+            color: black;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .success {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .warning {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        .danger {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        .feature {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Expense Tracker API - AI Features Demo</h1>
+        <p><strong>What makes this different from a basic REST API:</strong></p>
+        <div style="margin: 20px 0;">
+            <span class="feature">🤖 AI Budget Recommendations</span>
+            <span class="feature">📊 Predictive Analytics</span>
+            <span class="feature">⚠️ Smart Overspending Alerts</span>
+            <span class="feature">📈 Trend Analysis</span>
+            <span class="feature">💡 Personalized Tips</span>
+        </div>
+
+        <div class="section">
+            <h3>Step 1: Create User with Budget</h3>
+            <button onclick="createUser()">Create Test User ($3000 budget)</button>
+            <div id="user-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="section">
+            <h3>Step 2: Add Sample Expenses</h3>
+            <button onclick="addExpenses()">Add Realistic Expenses (Overspending in Food)</button>
+            <div id="expenses-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="section">
+            <h3>Step 3: View Analytics Dashboard</h3>
+            <button onclick="getAnalytics()">📊 Get Category Breakdown</button>
+            <div id="analytics-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="section">
+            <h3>Step 4: 🤖 AI-Powered Recommendations</h3>
+            <p>This is where the magic happens! The AI analyzes your spending and provides:</p>
+            <ul>
+                <li><strong>Category-specific warnings</strong> - Detects overspending patterns</li>
+                <li><strong>Personalized tips</strong> - Actionable advice to improve spending</li>
+                <li><strong>Budget forecasts</strong> - Predicts if you'll stay within budget</li>
+                <li><strong>Smart suggestions</strong> - Recommends optimal amounts per category</li>
+            </ul>
+            <button onclick="getRecommendations()">🔮 Get AI Recommendations</button>
+            <div id="recommendations-result" class="result" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+        let userId = null;
+
+        async function createUser() {
+            const result = document.getElementById('user-result');
+            result.style.display = 'block';
+            result.textContent = 'Creating user...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: 'Demo User',
+                        email: 'demo@example.com',
+                        monthly_budget: 3000
+                    })
+                });
+                
+                const data = await response.json();
+                userId = data.id;
+                result.innerHTML = `<span class="success">✓ User Created!</span>\n${JSON.stringify(data, null, 2)}\n\n<strong>User ID: ${userId}</strong> (will be used for next steps)`;
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        async function addExpenses() {
+            if (!userId) {
+                alert('Please create a user first!');
+                return;
+            }
+
+            const result = document.getElementById('expenses-result');
+            result.style.display = 'block';
+            result.textContent = 'Adding expenses...';
+
+            // Realistic expenses with intentional overspending in Food
+            const expenses = [
+                { category: 'Food', amount: 800, description: 'Groceries and dining out' },
+                { category: 'Food', amount: 450, description: 'Restaurant meals' },
+                { category: 'Transport', amount: 200, description: 'Uber and gas' },
+                { category: 'Utilities', amount: 150, description: 'Electricity and water' },
+                { category: 'Entertainment', amount: 300, description: 'Netflix, movies' },
+                { category: 'Shopping', amount: 600, description: 'Clothes and gadgets' },
+                { category: 'Health', amount: 100, description: 'Gym membership' },
+                { category: 'Education', amount: 250, description: 'Online courses' }
+            ];
+
+            try {
+                let output = '';
+                for (const expense of expenses) {
+                    const response = await fetch(`${API_URL}/api/expenses`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            user_id: userId,
+                            ...expense
+                        })
+                    });
+                    const data = await response.json();
+                    output += `✓ Added: ${expense.category} - $${expense.amount}\n`;
+                }
+                
+                const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+                result.innerHTML = `<span class="success">✓ All Expenses Added!</span>\n\n${output}\n<strong>Total Spent: $${total} / $3000 budget</strong>\n<span class="warning">⚠️ Notice: Food category is overspent ($1250 spent)</span>`;
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        async function getAnalytics() {
+            if (!userId) {
+                alert('Please create a user and add expenses first!');
+                return;
+            }
+
+            const result = document.getElementById('analytics-result');
+            result.style.display = 'block';
+            result.textContent = 'Fetching analytics...';
+
+            try {
+                const response = await fetch(`${API_URL}/api/analytics/${userId}`);
+                const data = await response.json();
+                
+                let output = '<span class="success">📊 ANALYTICS DASHBOARD</span>\n\n';
+                output += `Total Spent: $${data.total_spent}\n`;
+                output += `Budget Remaining: $${3000 - data.total_spent}\n\n`;
+                output += 'Category Breakdown:\n';
+                output += '─────────────────────────────\n';
+                
+                data.category_breakdown.forEach(cat => {
+                    const bar = '█'.repeat(Math.floor(cat.percentage / 2));
+                    output += `${cat.category.padEnd(15)} $${cat.amount.toString().padEnd(6)} ${bar} ${cat.percentage.toFixed(1)}%\n`;
+                });
+                
+                result.innerHTML = output;
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        async function getRecommendations() {
+            if (!userId) {
+                alert('Please create a user and add expenses first!');
+                return;
+            }
+
+            const result = document.getElementById('recommendations-result');
+            result.style.display = 'block';
+            result.textContent = 'Getting AI recommendations...';
+
+            try {
+                const response = await fetch(`${API_URL}/api/recommendations/${userId}`);
+                const data = await response.json();
+                
+                let output = '<span class="success">🤖 AI-POWERED BUDGET RECOMMENDATIONS</span>\n\n';
+                
+                data.recommendations.forEach((rec, index) => {
+                    const status = rec.status === 'overspent' ? 
+                        `<span class="danger">🔴 OVERSPENT</span>` : 
+                        rec.status === 'warning' ?
+                        `<span class="warning">⚠️ WARNING</span>` :
+                        `<span class="success">✓ GOOD</span>`;
+                    
+                    output += `\n┌─ ${rec.category.toUpperCase()} ${status}\n`;
+                    output += `├─ Recommended: $${rec.recommended}\n`;
+                    output += `├─ Spent: $${rec.spent}\n`;
+                    output += `├─ Remaining: $${rec.remaining}\n`;
+                    output += `└─ 💡 TIP: ${rec.tips}\n`;
+                });
+                
+                result.innerHTML = output;
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

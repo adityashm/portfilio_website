@@ -16,7 +16,7 @@ interface Deal {
   platform: string;
 }
 
-const API_BASE_URL = 'https://price-comparison-api-production.up.railway.app';
+const API_BASE_URL = 'https://web-production-c117d.up.railway.app';
 
 export default function PriceComparison() {
   const [searchQuery, setSearchQuery] = useState('');
