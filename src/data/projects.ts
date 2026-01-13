@@ -2,6 +2,22 @@ import { ProjectData } from '../types/project';
 
 export const projects: ProjectData[] = [
   {
+    title: 'Price Comparison & Deal Finder',
+    description: 'Multi-platform price comparison tool with web scraping, 7-day price trends, and real-time deal alerts. Helps users find the best prices across e-commerce platforms.',
+    technologies: ['Python', 'FastAPI', 'BeautifulSoup4', 'SQLite3', 'React', 'TypeScript'],
+    github: 'https://github.com/adityashm/price-comparison-api',
+    live: '/price-comparison',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80'
+  },
+  {
+    title: 'Smart Expense Tracker',
+    description: 'AI-powered expense tracking with budget recommendations, category-wise analytics, and spending insights. Intelligent financial management at your fingertips.',
+    technologies: ['Python', 'FastAPI', 'SQLite3', 'React', 'TypeScript', 'Recharts'],
+    github: 'https://github.com/adityashm/expense-tracker-api',
+    live: '/expense-tracker',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80'
+  },
+  {
     title: 'Data Analysis & Visualization Dashboard',
     description: 'Professional data analytics dashboard with real-time charts, KPI metrics, and business intelligence. Built with Flask and Plotly for interactive visualizations.',
     technologies: ['Python', 'Flask', 'Plotly', 'SQLite'],

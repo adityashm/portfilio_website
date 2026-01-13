@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Github, ExternalLink } from 'lucide-react';
 import { ProjectData } from '../types/project';
 import TechnologyBadge from './TechnologyBadge';
@@ -6,6 +7,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const ProjectCard = ({ title, description, technologies, github, live, image }: ProjectData) => {
   const ref = useScrollAnimation();
+  const isInternalLink = live?.startsWith('/');
 
   return (
     <div
@@ -39,15 +41,25 @@ const ProjectCard = ({ title, description, technologies, github, live, image }: 
             <Github size={18} />
             <span>Code</span>
           </a>
-          <a
-            href={live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm md:text-base px-3 py-2 md:px-4 bg-blue-100 dark:bg-blue-900 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 rounded transition-colors"
-          >
-            <ExternalLink size={18} />
-            <span>Live</span>
-          </a>
+          {isInternalLink ? (
+            <Link
+              to={live}
+              className="flex items-center gap-2 text-sm md:text-base px-3 py-2 md:px-4 bg-blue-100 dark:bg-blue-900 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 rounded transition-colors"
+            >
+              <ExternalLink size={18} />
+              <span>Demo</span>
+            </Link>
+          ) : (
+            <a
+              href={live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm md:text-base px-3 py-2 md:px-4 bg-blue-100 dark:bg-blue-900 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 rounded transition-colors"
+            >
+              <ExternalLink size={18} />
+              <span>Live</span>
+            </a>
+          )}
         </div>
       </div>
     </div>

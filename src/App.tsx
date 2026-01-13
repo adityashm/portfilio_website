@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,6 +12,8 @@ import Stats from './components/Stats';
 import GitHubStats from './components/GitHubStats';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import PriceComparison from './pages/PriceComparison';
+import ExpenseTracker from './pages/ExpenseTracker';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -37,7 +40,7 @@ function App() {
     }
   };
 
-  return (
+  const HomePage = () => (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       <Header isDark={isDark} toggleTheme={toggleTheme} />
       <Hero />
@@ -52,6 +55,16 @@ function App() {
       <Contact />
       <Footer />
     </div>
+  );
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/price-comparison" element={<PriceComparison />} />
+        <Route path="/expense-tracker" element={<ExpenseTracker />} />
+      </Routes>
+    </Router>
   );
 }
 
