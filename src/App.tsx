@@ -21,9 +21,13 @@ function App() {
   useEffect(() => {
     // Handle GitHub Pages 404 redirect for SPA routing
     const params = new URLSearchParams(window.location.search);
-    const redirect = params.get('p');
-    if (redirect) {
-      window.history.replaceState(null, '', redirect);
+    const route = params.get('route') || params.get('p') || params.get('redirect');
+    
+    if (route) {
+      // Remove query parameters and navigate using browser history
+      window.history.replaceState(null, '', route);
+      // Force re-render to apply new route
+      window.location.reload();
     }
   }, []);
 
