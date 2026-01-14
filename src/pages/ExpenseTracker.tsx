@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { PlusCircle, TrendingUp, DollarSign, PieChart as PieChartIcon, Lightbulb } from 'lucide-react';
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface User {
   id: number;
@@ -318,15 +318,15 @@ export default function ExpenseTracker() {
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
-                        data={analytics.category_breakdown}
+                        data={analytics.category_breakdown.map(cat => ({ ...cat, name: cat.category }))}
                         dataKey="amount"
-                        nameKey="category"
+                        nameKey="name"
                         cx="50%"
                         cy="50%"
                         outerRadius={100}
-                        label={(entry) => `${entry.category}: ₹${entry.amount.toLocaleString()}`}
+                        label={({ name, value }) => `${name}: ₹${value.toLocaleString()}`}
                       >
-                        {analytics.category_breakdown.map((entry, index) => (
+                        {analytics.category_breakdown.map((_, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
