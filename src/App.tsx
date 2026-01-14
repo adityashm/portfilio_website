@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -17,6 +17,15 @@ import ExpenseTracker from './pages/ExpenseTracker';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Handle GitHub Pages 404 redirect for SPA routing
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('p');
+    if (redirect) {
+      window.history.replaceState(null, '', redirect);
+    }
+  }, []);
 
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && 
