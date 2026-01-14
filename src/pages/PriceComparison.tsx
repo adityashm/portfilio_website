@@ -36,7 +36,7 @@ export default function PriceComparison() {
     try {
       const response = await fetch(`${API_BASE_URL}/api/products`);
       const data = await response.json();
-      setProducts(data.products || []);
+      setProducts(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching products:', error);
     }
@@ -46,7 +46,7 @@ export default function PriceComparison() {
     try {
       const response = await fetch(`${API_BASE_URL}/api/deals`);
       const data = await response.json();
-      setDeals(data.deals || []);
+      setDeals(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching deals:', error);
     }
@@ -60,12 +60,8 @@ export default function PriceComparison() {
     try {
       const response = await fetch(`${API_BASE_URL}/api/search?q=${encodeURIComponent(searchQuery)}`);
       const data = await response.json();
-      
-      // Wait a bit for scraping to complete
-      setTimeout(() => {
-        fetchProducts();
-        setLoading(false);
-      }, 2000);
+      setProducts(Array.isArray(data) ? data : []);
+      setLoading(false);
     } catch (error) {
       console.error('Error searching:', error);
       setLoading(false);

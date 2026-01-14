@@ -32,7 +32,7 @@ interface Recommendation {
   tips: string;
 }
 
-const API_BASE_URL = 'https://expense-tracker-api-production.up.railway.app';
+const API_BASE_URL = 'https://web-production-a281.up.railway.app';
 
 const CATEGORIES = ['Food', 'Transport', 'Utilities', 'Entertainment', 'Shopping', 'Health', 'Education', 'Other'];
 const COLORS = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#06b6d4', '#6366f1', '#64748b'];
