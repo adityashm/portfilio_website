@@ -19,7 +19,7 @@ const Hero = () => {
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
               <a
-                href="https://vbxjdrxsnahyaodirxaq.supabase.co/storage/v1/object/public/resume/Aditya%20sharma%20resume.pdf"
+                href="/Aditya sharma resume.pdf"
                 download
                 className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
@@ -56,12 +56,13 @@ const Hero = () => {
           <div className="md:w-1/2 mt-12 md:mt-0">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600 dark:border-blue-400">
-                <img
-                  src="https://vbxjdrxsnahyaodirxaq.supabase.co/storage/v1/object/public/resume/IMG_1193.JPG?t=2024-12-26T11%3A25%3A37.764Z"
-                  alt="Aditya Sharma"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+  <img
+    src="/IMG_1033.JPG"
+    alt="Aditya Sharma"
+    className="w-full h-full object-cover"
+  />
+</div>
+
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-600 dark:bg-blue-400 rounded-full opacity-20"></div>
             </div>
           </div>

@@ -4,6 +4,19 @@ import { ExperienceData } from '../types/experience';
 import ExperienceCard from './ExperienceCard';
 
 const experiences: ExperienceData[] = [
+   {
+  title: 'Space Tech Intern',
+  company: 'India Space Lab (under India Space Week)',
+  period: 'Jun 2025 - Aug 2025',
+  description: [
+    'Gained hands‑on experience in Advanced Drone Technology: UAV design, aerodynamics, materials, and ROS/Python-based autonomous control systems',
+    'Designed, built, and launched model rockets—covering propulsion, staging mechanisms, and mission deployment',
+    'Developed a student‑satellite (CanSat / CubeSat), implementing electronics, mission planning, and data telemetry',
+    'Collaborated with ISRO and DRDO mentors and worked alongside peers from IITs, IIM-A, and IIST on space entrepreneurship modules',
+    'Presented project prototypes and participated in simulated mission exercises, strengthening problem-solving & teamwork skills'
+  ]
+}
+,
   {
     title: 'Web Development Intern',
     company: 'Tech Innovators',
