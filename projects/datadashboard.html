@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Dashboard - Aditya Sharma</title>
+    <meta name="description" content="Interactive Data Analytics Dashboard built with Flask and Plotly. Analyze, visualize, and export data with ease.">
+    <meta property="og:title" content="Data Analytics Dashboard">
+    <meta property="og:description" content="Interactive Data Analytics Dashboard - Flask + Plotly + SQLite">
+    <meta property="og:type" content="website">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 60px 40px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .feature p {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .tech-stack {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        
+        .tech-stack h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tech-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .screenshot-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .screenshot-section h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+        
+        .screenshot {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 40px 20px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>📊 Data Analytics Dashboard</h1>
+            <p>Interactive data visualization and analysis platform</p>
+        </div>
+        
+        <div class="content">
+            <div class="features">
+                <div class="feature">
+                    <h3>📈 Interactive Charts</h3>
+                    <p>Beautiful, responsive charts and graphs powered by Plotly. Zoom, pan, and explore your data.</p>
+                </div>
+                <div class="feature">
+                    <h3>⚡ Real-time Analysis</h3>
+                    <p>Instant data processing and visualization. Upload CSV files and get instant insights.</p>
+                </div>
+                <div class="feature">
+                    <h3>💾 Data Management</h3>
+                    <p>Store and manage datasets with SQLite. Export results in multiple formats.</p>
+                </div>
+                <div class="feature">
+                    <h3>🎨 Beautiful UI</h3>
+                    <p>Modern, responsive design that works on all devices. Dark and light mode support.</p>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <h3>Technology Stack</h3>
+                <div class="tech-list">
+                    <span class="tech-badge">Flask 3.0.0</span>
+                    <span class="tech-badge">Python 3.10+</span>
+                    <span class="tech-badge">Plotly 5.18.0</span>
+                    <span class="tech-badge">SQLite3</span>
+                    <span class="tech-badge">Pandas</span>
+                    <span class="tech-badge">HTML/CSS/JS</span>
+                </div>
+            </div>
+            
+            <div class="screenshot-section">
+                <h3>Live Demo</h3>
+                <p style="margin: 20px 0; color: #666;">Click below to access the interactive dashboard</p>
+            </div>
+            
+            <div class="buttons">
+                <a href="https://web-production-9b7c.up.railway.app" target="_blank" class="btn btn-primary">
+                    🚀 Launch Dashboard
+                </a>
+                <a href="https://github.com/adityashm/Data-Analysis-Dashboard" target="_blank" class="btn btn-secondary">
+                    💻 View Source Code
+                </a>
+            </div>
+            
+            <div style="margin-top: 50px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">Key Features</h3>
+                <ul style="list-style: none; color: #666; line-height: 1.8;">
+                    <li>✅ Upload and analyze CSV files instantly</li>
+                    <li>✅ Generate multiple chart types (line, bar, pie, scatter)</li>
+                    <li>✅ Statistical analysis and data summary</li>
+                    <li>✅ Filter and drill-down capabilities</li>
+                    <li>✅ Export visualizations as images</li>
+                    <li>✅ Responsive design for mobile and desktop</li>
+                    <li>✅ Secure data handling</li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Built by Aditya Sharma | <a href="https://adityashm.me" style="color: #667eea; text-decoration: none;">Portfolio</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,10 +8,28 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Certifications from './components/Certifications';
+import Stats from './components/Stats';
+import GitHubStats from './components/GitHubStats';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
+import PriceComparison from './pages/PriceComparison';
+import ExpenseTracker from './pages/ExpenseTracker';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Handle GitHub Pages 404 redirect for SPA routing
+    const params = new URLSearchParams(window.location.search);
+    const route = params.get('route') || params.get('p') || params.get('redirect');
+    
+    if (route) {
+      // Remove query parameters and navigate using browser history
+      window.history.replaceState(null, '', route);
+      // Force re-render to apply new route
+      window.location.reload();
+    }
+  }, []);
 
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && 
@@ -34,7 +53,7 @@ function App() {
     }
   };
 
-  return (
+  const HomePage = () => (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       <Header isDark={isDark} toggleTheme={toggleTheme} />
       <Hero />
@@ -42,10 +61,23 @@ function App() {
       <Education />
       <Skills />
       <Projects />
+      <Stats />
       <Experience />
       <Certifications />
+      <GitHubStats />
       <Contact />
+      <Footer />
     </div>
+  );
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/price-comparison" element={<PriceComparison />} />
+        <Route path="/expense-tracker" element={<ExpenseTracker />} />
+      </Routes>
+    </Router>
   );
 }
 

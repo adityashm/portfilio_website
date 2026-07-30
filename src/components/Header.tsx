@@ -4,14 +4,38 @@ import { Menu, X, Moon, Sun } from 'lucide-react';
 const Header = ({ isDark, toggleTheme }: { isDark: boolean; toggleTheme: () => void }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('about');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Update active section based on scroll position
+      const sections = ['about', 'education', 'skills', 'projects', 'experience', 'certifications', 'contact'];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setIsMenuOpen(false);
+    }
+  };
 
   const navItems = [
     { label: 'About', href: '#about' },
@@ -38,7 +62,12 @@ const Header = ({ isDark, toggleTheme }: { isDark: boolean; toggleTheme: () => v
               <a
                 key={item.label}
                 href={item.href}
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                onClick={(e) => handleSmoothScroll(e, item.href)}
+                className={`transition-colors font-medium ${
+                  activeSection === item.href.replace('#', '')
+                    ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
+                    : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                }`}
               >
                 {item.label}
               </a>
@@ -75,8 +104,12 @@ const Header = ({ isDark, toggleTheme }: { isDark: boolean; toggleTheme: () => v
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  className={`transition-colors font-medium ${
+                    activeSection === item.href.replace('#', '')
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  }`}
                 >
                   {item.label}
                 </a>
