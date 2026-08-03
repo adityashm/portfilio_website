@@ -112,58 +112,58 @@ export const experiencesData: ExperienceData[] = [
 
 export const skillsData: SkillCategory[] = [
   {
-    title: 'Programming Languages',
+    title: 'Programming & Algorithms',
     iconName: 'Code2',
-    skills: ['Python', 'JavaScript', 'TypeScript', 'C']
+    skills: ['Python', 'JavaScript', 'TypeScript', 'C', 'Data Structures & Algorithms (250+ LeetCode)']
   },
   {
-    title: 'Web Development',
-    iconName: 'Layout',
-    skills: ['React.js', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS']
-  },
-  {
-    title: 'Backend & Databases',
+    title: 'Data Science & Machine Learning',
     iconName: 'Database',
-    skills: ['Node.js', 'Express.js', 'MongoDB', 'PostgreSQL']
+    skills: ['Pandas & NumPy', 'Scikit-learn', 'Data Wrangling & EDA', 'TensorFlow & Keras', 'Matplotlib']
   },
   {
-    title: 'Cloud & DevOps',
+    title: 'Web Development & Full-Stack',
+    iconName: 'Layout',
+    skills: ['React.js', 'Next.js', 'HTML5 & CSS3', 'Tailwind CSS', 'Node.js & Express']
+  },
+  {
+    title: 'Cloud, DevOps & Systems',
     iconName: 'Cloud',
-    skills: ['AWS', 'Docker', 'Linux']
+    skills: ['AWS', 'Docker', 'Linux Systems', 'Agile & Scrum Workflow']
   },
   {
     title: 'Tools & Technologies',
     iconName: 'Terminal',
-    skills: ['Git', 'VS Code', 'Postman', 'Figma']
+    skills: ['Git & GitHub', 'VS Code', 'Postman', 'Figma']
   },
   {
-    title: 'Version Control',
+    title: 'Core Competencies',
     iconName: 'GitBranch',
-    skills: ['Git', 'GitHub', 'GitLab']
+    skills: ['Algorithmic Optimization', 'Analytical Thinking', 'System Reliability', 'Team Collaboration']
   }
 ];
 
 export const aboutCardsData: AboutCard[] = [
   {
     iconName: 'Code2',
-    title: 'Software Development',
-    description: 'Passionate about creating efficient and scalable solutions through code. Experienced in web development and various programming languages.'
+    title: 'Full-Stack Software Engineering',
+    description: 'Experienced in React, TypeScript, Node.js, and Agile/Scrum methodologies. Focused on building scalable, reliable enterprise web applications.'
   },
   {
     iconName: 'Brain',
-    title: 'Continuous Learning',
-    description: 'Always eager to learn new technologies and stay updated with the latest developments in the tech industry.'
+    title: 'Algorithmic Problem Solving (250+ LeetCode)',
+    description: 'Completed 250+ Data Structures & Algorithms (DSA) challenges on LeetCode across dynamic programming, trees, graphs, and system complexity optimization.'
   },
   {
     iconName: 'Coffee',
-    title: 'Problem Solving',
-    description: 'Enjoy tackling complex problems and finding innovative solutions through analytical thinking and creativity.'
+    title: 'Data Science & Applied ML',
+    description: 'Proficient in Python (Pandas, NumPy, Scikit-learn), Exploratory Data Analysis (EDA), and neural network foundations with TensorFlow & Keras.'
   }
 ];
 
 export const aboutBioData = [
-  "I'm a final-year B.Tech Computer Science Engineering student with a strong passion for technology and innovation. My journey in computer science began with curiosity about how software shapes our world, and it has evolved into a dedicated pursuit of knowledge and practical skills in various domains of computing.",
-  "Currently, I'm focusing on web development, machine learning, and cloud computing, while maintaining a strong foundation in core computer science concepts. I believe in the power of technology to solve real-world problems and am always excited to work on projects that make a positive impact."
+  "I'm a B.Tech Computer Science Engineering student at IMS Engineering College, Ghaziabad, maintaining an 8.6 CGPA with a strong foundation in algorithmic problem-solving, full-stack development, and data systems.",
+  "I have solved 250+ Data Structures & Algorithms (DSA) problems on LeetCode, sharpening my ability to design time- and space-efficient software. Alongside algorithmic rigor, I bring practical hands-on experience in Linux systems, industrial IT cybersecurity (NTPC Dadri), and autonomous telemetry systems (India Space Lab)."
 ];
 
 export { projects as projectsData };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Github, Code2, Award } from 'lucide-react';
+import { Code2, Award } from 'lucide-react';
 import SectionReveal from './animations/SectionReveal';
 import TiltCard from './animations/TiltCard';
 import { StaggerContainer, StaggerItem } from './animations/StaggerContainer';
@@ -42,17 +42,17 @@ const Stats = () => {
   const statCards = [
     {
       icon: Code2,
-      label: 'Projects',
+      label: 'Projects & Demos',
       value: stats.repositories,
       glowColor: 'cyan' as const,
       iconColor: 'text-cyan-400 bg-cyan-950/60 border-cyan-500/30 shadow-[0_0_15px_rgba(0,240,255,0.25)]',
     },
     {
-      icon: Github,
-      label: 'GitHub Followers',
-      value: stats.followers,
-      glowColor: 'violet' as const,
-      iconColor: 'text-violet-400 bg-violet-950/60 border-violet-500/30 shadow-[0_0_15px_rgba(139,92,246,0.25)]',
+      icon: Award,
+      label: 'LeetCode DSA Solved',
+      value: 250,
+      glowColor: 'amber' as const,
+      iconColor: 'text-amber-400 bg-amber-950/60 border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.25)]',
     },
     {
       icon: Award,

@@ -1,22 +1,34 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X, Search, FileText, Trophy } from 'lucide-react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 
 export interface NavbarProps {
   isDark?: boolean;
   toggleTheme?: () => void;
 }
 
-export default function Navbar({ isDark: propIsDark, toggleTheme: propToggleTheme }: NavbarProps) {
-  const themeContext = useTheme();
-  const isDark = propIsDark !== undefined ? propIsDark : themeContext.isDark;
-  const toggleTheme = propToggleTheme || themeContext.toggleTheme;
+export default function Navbar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [unlockedCount, setUnlockedCount] = useState(0);
   const drawerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateCount = () => {
+      try {
+        const stored = localStorage.getItem('unlocked_achievements');
+        const list = stored ? JSON.parse(stored) : [];
+        setUnlockedCount(list.length);
+      } catch {
+        setUnlockedCount(0);
+      }
+    };
+    updateCount();
+    window.addEventListener('achievements-updated', updateCount);
+    return () => window.removeEventListener('achievements-updated', updateCount);
+  }, []);
 
   // Framer Motion scroll progress indicator
   const { scrollYProgress } = useScroll();
@@ -181,21 +193,55 @@ export default function Navbar({ isDark: propIsDark, toggleTheme: propToggleThem
             })}
 
             <button
-              onClick={toggleTheme}
-              aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
+              onClick={() => window.dispatchEvent(new CustomEvent('open-cmd-k'))}
+              aria-label="Open Command Palette Search (Cmd+K)"
+              className="flex items-center gap-2 px-3 py-1.5 bg-slate-900/80 hover:bg-slate-800 border border-white/10 hover:border-cyan-500/40 rounded-xl text-xs font-mono text-slate-300 transition-all focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
             >
-              {isDark ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-cyan-400" />}
+              <Search size={14} className="text-cyan-400" />
+              <span className="hidden lg:inline">Search...</span>
+              <kbd className="px-1.5 py-0.5 text-[10px] bg-slate-800 border border-white/10 rounded text-slate-400">⌘K</kbd>
+            </button>
+
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-resume-preview'))}
+              aria-label="Preview Resume PDF inline"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-xs font-bold rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
+            >
+              <FileText size={14} />
+              <span>Resume</span>
+            </button>
+
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-achievement-cabinet'))}
+              aria-label="View Developer Trophy Cabinet"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold rounded-xl transition-all"
+            >
+              <Trophy size={14} className="text-amber-400" />
+              <span>{unlockedCount}/5</span>
             </button>
           </div>
 
           <div className="md:hidden flex items-center space-x-2">
             <button
-              onClick={toggleTheme}
-              aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
+              onClick={() => window.dispatchEvent(new CustomEvent('open-cmd-k'))}
+              aria-label="Open Search (Cmd+K)"
+              className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-full bg-slate-900/80 border border-white/10 text-cyan-400"
             >
-              {isDark ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-cyan-400" />}
+              <Search size={18} />
+            </button>
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-resume-preview'))}
+              aria-label="Preview Resume PDF"
+              className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300"
+            >
+              <FileText size={18} />
+            </button>
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-achievement-cabinet'))}
+              aria-label="View Trophy Cabinet"
+              className="p-2 min-w-[38px] min-h-[38px] flex items-center justify-center rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300"
+            >
+              <Trophy size={18} />
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}

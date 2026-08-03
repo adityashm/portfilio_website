@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Terminal, Database, Play, Square, Globe, Server, CheckCircle2 } from 'lucide-react';
+import { Terminal, Database, Play, Square, Globe, Server, CheckCircle2, Cpu } from 'lucide-react';
 import Layout from '../components/Layout';
 import SectionReveal from '../components/animations/SectionReveal';
 import TiltCard from '../components/animations/TiltCard';
@@ -113,6 +113,16 @@ export default function WebScraper() {
               <p className="text-slate-400 mt-2 max-w-2xl text-sm md:text-base">
                 Multi-threaded web scraping engine with SQLite persistence, HTML parsing, automatic rate-limiting, and background scheduling.
               </p>
+              <div className="mt-4">
+                <button
+                  onClick={() => window.dispatchEvent(new CustomEvent('open-architecture-modal', { detail: { project: 'web-scraper' } }))}
+                  aria-label="View System Architecture Diagram for Web Scraper with Database"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/40 hover:border-cyan-400 text-cyan-300 rounded-xl text-xs font-mono font-bold shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all"
+                >
+                  <Cpu size={16} className="text-violet-400" />
+                  <span>View System Architecture &amp; Data Flow →</span>
+                </button>
+              </div>
             </div>
 
             <div className="flex items-center gap-3">

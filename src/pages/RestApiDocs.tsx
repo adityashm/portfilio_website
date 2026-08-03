@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Send, CheckCircle2, ShieldCheck, Database, Key, Terminal, ExternalLink } from 'lucide-react';
+import { Send, CheckCircle2, ShieldCheck, Database, Key, Terminal, ExternalLink, Cpu } from 'lucide-react';
 import Layout from '../components/Layout';
 import SectionReveal from '../components/animations/SectionReveal';
 import TiltCard from '../components/animations/TiltCard';
+import LoadTestSimulator from '../components/modals/LoadTestSimulator';
 
 interface ApiEndpoint {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -124,6 +125,16 @@ export default function RestApiDocs() {
               <p className="text-slate-400 mt-2 max-w-2xl text-sm md:text-base">
                 Enterprise-grade REST API with JWT Bearer authentication, SQLAlchemy ORM, Pydantic schemas, and OpenAPI 3.0 documentation.
               </p>
+              <div className="mt-4">
+                <button
+                  onClick={() => window.dispatchEvent(new CustomEvent('open-architecture-modal', { detail: { project: 'rest-api' } }))}
+                  aria-label="View System Architecture Diagram for REST API Backend"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/40 hover:border-cyan-400 text-cyan-300 rounded-xl text-xs font-mono font-bold shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all"
+                >
+                  <Cpu size={16} className="text-violet-400" />
+                  <span>View System Architecture &amp; Data Flow →</span>
+                </button>
+              </div>
             </div>
 
             <div className="flex items-center gap-3">
@@ -137,6 +148,13 @@ export default function RestApiDocs() {
                 <ExternalLink size={16} />
               </a>
             </div>
+          </div>
+        </SectionReveal>
+
+        {/* Load Test Benchmarker */}
+        <SectionReveal delay={0.05}>
+          <div className="mb-12">
+            <LoadTestSimulator title="REST API Endpoint Load &amp; Concurrency Benchmark (100 Requests)" />
           </div>
         </SectionReveal>
 

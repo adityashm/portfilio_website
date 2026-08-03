@@ -5,7 +5,7 @@ export interface TiltCardProps {
   children: ReactNode;
   className?: string;
   tiltMaxAngle?: number;
-  glowColor?: 'cyan' | 'violet' | 'emerald';
+  glowColor?: 'cyan' | 'violet' | 'emerald' | 'amber';
   onClick?: () => void;
 }
 
@@ -13,6 +13,7 @@ const glowColorMap = {
   cyan: 'rgba(0, 240, 255, 0.18)',
   violet: 'rgba(139, 92, 246, 0.18)',
   emerald: 'rgba(16, 185, 129, 0.18)',
+  amber: 'rgba(245, 158, 11, 0.18)',
 };
 
 export default function TiltCard({

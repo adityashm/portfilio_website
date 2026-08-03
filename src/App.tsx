@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -37,12 +37,38 @@ function SpaRedirectHandler() {
   return null;
 }
 
+function DemoExplorerTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const demos = ['/price-comparison', '/expense-tracker', '/data-dashboard', '/web-scraper', '/rest-api'];
+    if (demos.includes(location.pathname)) {
+      try {
+        const stored = localStorage.getItem('visited_demos');
+        const visited: string[] = stored ? JSON.parse(stored) : [];
+        if (!visited.includes(location.pathname)) {
+          const next = [...visited, location.pathname];
+          localStorage.setItem('visited_demos', JSON.stringify(next));
+          if (next.length >= 2) {
+            window.dispatchEvent(new CustomEvent('unlock-achievement', { detail: 'demo-explorer' }));
+          }
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }, [location]);
+
+  return null;
+}
+
 function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
         <Router>
           <SpaRedirectHandler />
+          <DemoExplorerTracker />
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<HomePage />} />

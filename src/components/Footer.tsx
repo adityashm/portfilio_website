@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, Code2 } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -22,6 +22,12 @@ const Footer = () => {
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/adityashm/',
       glow: 'hover:border-violet-400 hover:text-violet-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.3)]'
+    },
+    {
+      icon: Code2,
+      label: 'LeetCode',
+      href: 'https://leetcode.com/u/adityashm/',
+      glow: 'hover:border-amber-400 hover:text-amber-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]'
     },
     {
       icon: Mail,

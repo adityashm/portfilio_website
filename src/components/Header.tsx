@@ -1,7 +1,7 @@
-import Navbar, { NavbarProps } from './Navbar';
+import Navbar from './Navbar';
 
-export default function Header(props: NavbarProps) {
-  return <Navbar {...props} />;
+export default function Header() {
+  return <Navbar />;
 }
 
 export { Navbar };

@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Search, TrendingDown, Bell, Tag, AlertTriangle } from 'lucide-react';
+import { Search, TrendingDown, Bell, Tag, AlertTriangle, Cpu } from 'lucide-react';
 import Layout from '../components/Layout';
 import SectionReveal from '../components/animations/SectionReveal';
 import TiltCard from '../components/animations/TiltCard';
@@ -185,6 +185,16 @@ export default function PriceComparison() {
                 Price Comparison Tool
               </h1>
               <p className="text-lg text-slate-300 max-w-xl mx-auto font-medium">Find the best deals across e-commerce platforms</p>
+              <div className="flex justify-center mt-4">
+                <button
+                  onClick={() => window.dispatchEvent(new CustomEvent('open-architecture-modal', { detail: { project: 'price-comparison' } }))}
+                  aria-label="View System Architecture Diagram for Price Comparison Tool"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/40 hover:border-cyan-400 text-cyan-300 rounded-xl text-xs font-mono font-bold shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all"
+                >
+                  <Cpu size={16} className="text-violet-400" />
+                  <span>View System Architecture &amp; Data Flow →</span>
+                </button>
+              </div>
               {error && (
                 <div className="mt-4 max-w-md mx-auto p-3 bg-rose-950/80 border border-rose-500/50 rounded-xl flex items-center justify-center gap-2 text-rose-200 text-sm shadow-[0_0_15px_rgba(244,63,94,0.2)]">
                   <AlertTriangle size={18} className="text-rose-400 shrink-0" />

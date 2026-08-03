@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText, Code2 } from 'lucide-react';
 const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center bg-transparent overflow-hidden">
@@ -20,24 +20,42 @@ const Hero = () => {
             <p className="text-xl md:text-2xl text-violet-400 mb-8 font-medium">
               Software Engineer & Technology Innovator
             </p>
-            <p className="text-lg text-slate-300 mb-8 max-w-2xl">
-              Passionate about software development and technology innovation. Currently exploring web development,
-              machine learning, and cloud computing.
+            <p className="text-lg text-slate-300 mb-6 max-w-2xl">
+              Passionate about software engineering and algorithmic problem-solving. Currently exploring web development,
+              data science, and cloud computing.
             </p>
-            <div className="flex flex-wrap justify-center md:justify-start gap-4">
+            <div className="flex flex-wrap justify-center md:justify-start gap-2.5 mb-8 text-xs font-mono">
+              <span className="px-3 py-1 bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 rounded-full font-bold shadow-[0_0_12px_rgba(0,240,255,0.2)]">
+                B.TECH CSE • 8.6 CGPA
+              </span>
+              <span className="px-3 py-1 bg-amber-500/10 text-amber-300 border border-amber-500/30 rounded-full font-bold shadow-[0_0_12px_rgba(245,158,11,0.2)]">
+                250+ LEETCODE DSA SOLVED
+              </span>
+              <span className="px-3 py-1 bg-violet-500/10 text-violet-300 border border-violet-500/30 rounded-full font-medium">
+                NTPC Dadri &amp; ISL Trained
+              </span>
+            </div>
+            <div className="flex flex-wrap justify-center md:justify-start gap-3">
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent('open-resume-preview'))}
+                aria-label="Preview Aditya Sharma's Resume PDF inline"
+                className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-white font-bold rounded-lg active:scale-95 transition-all duration-150 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+              >
+                <FileText size={20} />
+                Preview Resume
+              </button>
               <a
                 href="/Aditya_Sharma_Resume.pdf"
                 download="Aditya_Sharma_Resume.pdf"
                 aria-label="Download Aditya Sharma's Resume PDF"
-                className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-white rounded-lg active:scale-95 transition-all duration-150 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+                className="flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] border border-cyan-400/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 font-semibold rounded-lg active:scale-95 transition-all duration-150 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
               >
-                <FileText size={20} />
-                Download Resume
+                Download PDF
               </a>
               <a
                 href="#contact"
                 aria-label="Navigate to contact section"
-                className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-cyan-400/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 rounded-lg active:scale-95 transition-all duration-150 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
+                className="flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] border border-white/10 text-slate-300 hover:bg-white/5 hover:text-white rounded-lg active:scale-95 transition-all duration-150 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
               >
                 <Mail size={20} />
                 Contact Me
@@ -61,6 +79,16 @@ const Hero = () => {
                 className="p-2.5 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full text-slate-300 hover:text-white hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
               >
                 <Linkedin size={24} />
+              </a>
+              <a
+                href="https://leetcode.com/u/adityashm/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LeetCode Profile (250+ DSA Solved)"
+                title="LeetCode (250+ DSA Solved)"
+                className="p-2.5 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full text-slate-300 hover:text-amber-400 hover:bg-amber-500/10 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
+              >
+                <Code2 size={24} />
               </a>
             </div>
           </div>
