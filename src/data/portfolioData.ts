@@ -76,6 +76,16 @@ export const certificationsData: Certification[] = [
 
 export const experiencesData: ExperienceData[] = [
   {
+    title: 'Vocational Trainee – Industrial IT & Cybersecurity',
+    company: 'NTPC Dadri',
+    period: '1 June 2026 - 30 June 2026',
+    description: [
+      'Gained hands-on exposure to industrial IT infrastructure, network operations, and cybersecurity practices in a large-scale power sector environment',
+      'Worked with Linux-based systems; learned OS-level performance monitoring and system reliability practices relevant to enterprise environments',
+      'Observed SDLC/STLC workflows in industrial software deployments, including testing, lifecycle management, and performance validation'
+    ]
+  },
+  {
     title: 'Space Tech Intern',
     company: 'India Space Lab (under India Space Week)',
     period: 'Jun 2025 - Aug 2025',
@@ -85,28 +95,6 @@ export const experiencesData: ExperienceData[] = [
       'Developed a student‑satellite (CanSat / CubeSat), implementing electronics, mission planning, and data telemetry',
       'Collaborated with ISRO and DRDO mentors and worked alongside peers from IITs, IIM-A, and IIST on space entrepreneurship modules',
       'Presented project prototypes and participated in simulated mission exercises, strengthening problem-solving & teamwork skills'
-    ]
-  },
-  {
-    title: 'Summer Internship - Technical Training Program',
-    company: 'India Space Lab ',
-    period: 'Jun 2025 - Jul 2025',
-    description: [
-      'Completed advanced training in Space Science and Technology',
-      'Specialized modules: Advanced Drone Technology, CubeSat and Satellite Programs',
-      'Studied Astronomy, Rocketry, Remote Sensing and Space Entrepreneurship',
-      'Collaborated with industry experts and gained hands-on experience in space technology'
-    ]
-  },
-  {
-    title: 'Web Development Intern',
-    company: 'Tech Innovators',
-    period: 'Jun 2023 - Aug 2023',
-    description: [
-      'Developed and maintained responsive web applications using React.js and Node.js',
-      'Implemented RESTful APIs and integrated third-party services',
-      'Collaborated with senior developers on large-scale projects',
-      'Improved application performance by 40% through code optimization'
     ]
   },
   {

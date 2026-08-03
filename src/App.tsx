@@ -6,6 +6,9 @@ import { ThemeProvider } from './context/ThemeContext';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const PriceComparison = lazy(() => import('./pages/PriceComparison'));
 const ExpenseTracker = lazy(() => import('./pages/ExpenseTracker'));
+const DataDashboard = lazy(() => import('./pages/DataDashboard'));
+const WebScraper = lazy(() => import('./pages/WebScraper'));
+const RestApiDocs = lazy(() => import('./pages/RestApiDocs'));
 
 function PageLoader() {
   return (
@@ -45,6 +48,9 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/price-comparison" element={<PriceComparison />} />
               <Route path="/expense-tracker" element={<ExpenseTracker />} />
+              <Route path="/data-dashboard" element={<DataDashboard />} />
+              <Route path="/web-scraper" element={<WebScraper />} />
+              <Route path="/rest-api" element={<RestApiDocs />} />
             </Routes>
           </Suspense>
         </Router>
