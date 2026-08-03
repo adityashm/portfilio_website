@@ -4,4 +4,4 @@ Disallow: /node_modules/
 Disallow: /.env
 Disallow: /.git
 
-Sitemap: https://adityashm.me/sitemap.xml
+Sitemap: https://adityashm.tech/sitemap.xml

@@ -15,49 +15,53 @@ const Footer = () => {
       icon: Github,
       label: 'GitHub',
       href: 'https://github.com/adityashm',
-      color: 'hover:text-gray-900 dark:hover:text-white'
+      glow: 'hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_15px_rgba(0,240,255,0.3)]'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/adityashm/',
-      color: 'hover:text-blue-600 dark:hover:text-blue-400'
+      glow: 'hover:border-violet-400 hover:text-violet-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.3)]'
     },
     {
       icon: Mail,
       label: 'Email',
-      href: 'mailto:aditi111106@gmail.com',
-      color: 'hover:text-red-600 dark:hover:text-red-400'
+      href: 'mailto:adityashm09@gmail.com',
+      glow: 'hover:border-rose-400 hover:text-rose-300 hover:shadow-[0_0_15px_rgba(244,63,94,0.3)]'
     }
   ];
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-white">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+    <footer className="bg-slate-950/90 backdrop-blur-md border-t border-white/10 text-white relative z-10 py-12">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-2">Aditya Sharma</h3>
-            <p className="text-gray-400">
+            <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 mb-1">
+              Aditya Sharma
+            </h2>
+            <p className="text-cyan-400 text-sm font-semibold mb-2">
               Full Stack Developer | B.Tech CS Student
             </p>
-            <p className="text-gray-500 text-sm mt-2">
+            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
               Passionate about building web applications and solving problems with code.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h3 className="text-sm font-mono uppercase tracking-widest text-slate-300 mb-4">
+              Quick Links
+            </h3>
             <ul className="space-y-2">
               {links.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                    className="text-slate-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-2 py-1 text-sm font-medium focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:outline-none rounded"
                   >
-                    <ExternalLink size={16} />
-                    {link.label}
+                    <ExternalLink size={14} className="text-cyan-500" />
+                    <span>{link.label}</span>
                   </a>
                 </li>
               ))}
@@ -66,8 +70,10 @@ const Footer = () => {
 
           {/* Social Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Connect</h4>
-            <div className="flex gap-6">
+            <h3 className="text-sm font-mono uppercase tracking-widest text-slate-300 mb-4">
+              Connect
+            </h3>
+            <div className="flex gap-3">
               {social.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -77,9 +83,10 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     title={item.label}
-                    className={`text-gray-400 transition-colors ${item.color}`}
+                    aria-label={`Connect via ${item.label}`}
+                    className={`p-3 rounded-xl bg-slate-900 border border-white/10 text-slate-300 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:outline-none ${item.glow}`}
                   >
-                    <Icon size={24} />
+                    <Icon size={20} />
                   </a>
                 );
               })}
@@ -88,19 +95,19 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-800 my-8"></div>
+        <div className="border-t border-white/10 my-8"></div>
 
-        {/* Copyright */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+        {/* Copyright & Manifest links */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm gap-4">
           <p>&copy; {currentYear} Aditya Sharma. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="https://adityashm.tech/sitemap.xml" className="hover:text-white transition-colors">
+          <div className="flex gap-6 font-mono text-xs">
+            <a href="https://adityashm.tech/sitemap.xml" className="hover:text-cyan-300 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:outline-none rounded">
               Sitemap
             </a>
-            <a href="https://adityashm.tech/robots.txt" className="hover:text-white transition-colors">
+            <a href="https://adityashm.tech/robots.txt" className="hover:text-cyan-300 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:outline-none rounded">
               Robots
             </a>
-            <a href="#contact" className="hover:text-white transition-colors">
+            <a href="#contact" className="hover:text-cyan-300 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:outline-none rounded">
               Privacy
             </a>
           </div>

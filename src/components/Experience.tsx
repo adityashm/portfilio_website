@@ -1,66 +1,31 @@
-import { ExperienceData } from '../types/experience';
+import { experiencesData } from '../data/portfolioData';
 import ExperienceCard from './ExperienceCard';
-
-const experiences: ExperienceData[] = [
-   {
-  title: 'Space Tech Intern',
-  company: 'India Space Lab (under India Space Week)',
-  period: 'Jun 2025 - Aug 2025',
-  description: [
-    'Gained hands‑on experience in Advanced Drone Technology: UAV design, aerodynamics, materials, and ROS/Python-based autonomous control systems',
-    'Designed, built, and launched model rockets—covering propulsion, staging mechanisms, and mission deployment',
-    'Developed a student‑satellite (CanSat / CubeSat), implementing electronics, mission planning, and data telemetry',
-    'Collaborated with ISRO and DRDO mentors and worked alongside peers from IITs, IIM-A, and IIST on space entrepreneurship modules',
-    'Presented project prototypes and participated in simulated mission exercises, strengthening problem-solving & teamwork skills'
-  ]
-}
-,
-  {
-    title: 'Summer Internship - Technical Training Program',
-    company: 'India Space Lab ',
-    period: 'Jun 2025 - Jul 2025',
-    description: [
-      'Completed advanced training in Space Science and Technology',
-      'Specialized modules: Advanced Drone Technology, CubeSat and Satellite Programs',
-      'Studied Astronomy, Rocketry, Remote Sensing and Space Entrepreneurship',
-      'Collaborated with industry experts and gained hands-on experience in space technology'
-    ]
-  },
-  {
-    title: 'Web Development Intern',
-    company: 'Tech Innovators',
-    period: 'Jun 2023 - Aug 2023',
-    description: [
-      'Developed and maintained responsive web applications using React.js and Node.js',
-      'Implemented RESTful APIs and integrated third-party services',
-      'Collaborated with senior developers on large-scale projects',
-      'Improved application performance by 40% through code optimization'
-    ]
-  },
-  {
-    title: 'Technical Team Lead',
-    company: 'College Technical Society',
-    period: 'Aug 2022 - Present',
-    description: [
-      'Lead a team of 10 students in various technical projects',
-      'Organized workshops and technical events',
-      'Mentored junior members in web development and programming',
-      'Managed project timelines and deliverables'
-    ]
-  }
-];
+import SectionReveal from './animations/SectionReveal';
+import { StaggerContainer, StaggerItem } from './animations/StaggerContainer';
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-16 md:py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8 md:mb-12">
-          Experience
-        </h2>
-        <div className="max-w-3xl mx-auto">
-          {experiences.map((exp, index) => (
-            <ExperienceCard key={index} {...exp} />
-          ))}
+    <section id="experience" className="py-24 relative z-10 bg-transparent text-white">
+      <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+        <SectionReveal direction="up">
+          <div className="text-center mb-12">
+            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-cyan-400 block mb-2">
+              CAREER & JOURNEY
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 tracking-tight">
+              Work Experience
+            </h2>
+          </div>
+        </SectionReveal>
+
+        <div className="relative pl-6 md:pl-10 before:absolute before:left-2 md:before:left-4 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-cyan-500 before:via-violet-500 before:to-transparent">
+          <StaggerContainer>
+            {experiencesData.map((exp, index) => (
+              <StaggerItem key={index}>
+                <ExperienceCard {...exp} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </div>
     </section>

@@ -1,9 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Smooth scroll behavior */
-html {
+
+/* Smooth scroll behavior and overflow safeguard */
+html, body {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* ── Cosmic Dark Space Base Styles ────────────────────────────────────────── */
+body {
+  @apply bg-[#030712] text-slate-100 transition-colors duration-300;
 }
 
 /* Scroll animations */
@@ -29,7 +36,135 @@ html {
 .animate-in:nth-child(4) { animation-delay: 0.4s; }
 .animate-in:nth-child(5) { animation-delay: 0.5s; }
 
-/* Smooth transitions */
-* {
+/* Cleaned up performance transition rule (div removed to prevent global reflows) */
+body, section, header, footer, button, a {
   @apply transition-colors duration-200;
+}
+
+/* ── Cosmic Glassmorphism System ────────────────────────────────────────── */
+
+/* 1. Standard Cosmic Glass Card */
+.glass-card-cosmic {
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 300ms ease-out;
+}
+.glass-card-cosmic:hover {
+  border-color: rgba(0, 240, 255, 0.40);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.20);
+}
+
+/* 2. Spotlight Glass Card */
+.glass-card-spotlight {
+  position: relative;
+  background-color: #0b0f19;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.glass-card-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 240, 255, 0.15),
+    transparent 80%
+  );
+  pointer-events: none;
+  transition: opacity 300ms ease;
+  opacity: var(--glow-opacity, 0);
+}
+
+/* 3. High-Contrast Modal Glass */
+.glass-modal-cosmic {
+  background-color: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 240, 255, 0.30);
+  box-shadow: 0 0 50px rgba(0, 240, 255, 0.15);
+}
+
+/* ── Typography & Badge Utilities ────────────────────────────────────────── */
+
+.badge-tech {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-cyan-950/40 text-cyan-300 border border-cyan-500/30 backdrop-blur-sm shadow-[0_0_10px_rgba(0,240,255,0.1)] hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all;
+}
+
+.badge-status-live {
+  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-emerald-950/50 text-emerald-300 border border-emerald-500/40 backdrop-blur-md;
+}
+
+.badge-cosmic-gradient {
+  @apply relative inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-slate-900 border border-transparent bg-clip-padding;
+}
+.badge-cosmic-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  border-radius: 9999px;
+  padding: 1px;
+  background: linear-gradient(to right, #00f0ff, #8b5cf6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ── 3D Project Card Spotlight Glow ────────────────────────────────────────── */
+.project-card-3d {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --glow-opacity: 0;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* Spotlight border glow layer */
+.project-card-3d::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    300px circle at var(--mouse-x) var(--mouse-y),
+    rgba(59, 130, 246, 0.35),
+    transparent 70%
+  );
+  opacity: var(--glow-opacity);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Inner highlight shimmer */
+.project-card-3d::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    180px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.08),
+    transparent 60%
+  );
+  opacity: var(--glow-opacity);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Respect prefers-reduced-motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Education from './components/Education';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Certifications from './components/Certifications';
-import Stats from './components/Stats';
-import GitHubStats from './components/GitHubStats';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import PriceComparison from './pages/PriceComparison';
-import ExpenseTracker from './pages/ExpenseTracker';
+import { useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { ThemeProvider } from './context/ThemeContext';
 
-function App() {
-  const [isDark, setIsDark] = useState(false);
+const HomePage = lazy(() => import('./pages/HomePage'));
+const PriceComparison = lazy(() => import('./pages/PriceComparison'));
+const ExpenseTracker = lazy(() => import('./pages/ExpenseTracker'));
+
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-transparent text-white relative z-10" role="status" aria-label="Loading page">
+      <div className="flex flex-col items-center gap-4 p-6 glass-card-cosmic rounded-2xl border border-white/10 shadow-2xl">
+        <div className="w-10 h-10 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin shadow-[0_0_15px_rgba(0,240,255,0.5)]"></div>
+        <span className="text-sm font-mono text-cyan-300 tracking-wider uppercase">Loading experience...</span>
+      </div>
+    </div>
+  );
+}
+
+function SpaRedirectHandler() {
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Handle GitHub Pages 404 redirect for SPA routing
@@ -24,60 +27,29 @@ function App() {
     const route = params.get('route') || params.get('p') || params.get('redirect');
     
     if (route) {
-      // Remove query parameters and navigate using browser history
-      window.history.replaceState(null, '', route);
-      // Force re-render to apply new route
-      window.location.reload();
+      navigate(route, { replace: true });
     }
-  }, []);
+  }, [navigate]);
 
-  useEffect(() => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && 
-        window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    } else {
-      setIsDark(false);
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
+  return null;
+}
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    if (isDark) {
-      localStorage.theme = 'light';
-      document.documentElement.classList.remove('dark');
-    } else {
-      localStorage.theme = 'dark';
-      document.documentElement.classList.add('dark');
-    }
-  };
-
-  const HomePage = () => (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-      <Header isDark={isDark} toggleTheme={toggleTheme} />
-      <Hero />
-      <About />
-      <Education />
-      <Skills />
-      <Projects />
-      <Stats />
-      <Experience />
-      <Certifications />
-      <GitHubStats />
-      <Contact />
-      <Footer />
-    </div>
-  );
-
+function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/price-comparison" element={<PriceComparison />} />
-        <Route path="/expense-tracker" element={<ExpenseTracker />} />
-      </Routes>
-    </Router>
+    <HelmetProvider>
+      <ThemeProvider>
+        <Router>
+          <SpaRedirectHandler />
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/price-comparison" element={<PriceComparison />} />
+              <Route path="/expense-tracker" element={<ExpenseTracker />} />
+            </Routes>
+          </Suspense>
+        </Router>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

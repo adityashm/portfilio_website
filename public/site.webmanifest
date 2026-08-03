@@ -1,0 +1,16 @@
+{
+  "name": "Aditya Sharma Portfolio",
+  "short_name": "Aditya Sharma",
+  "description": "Portfolio of Aditya Sharma, final-year B.Tech CSE student & software developer",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0f172a",
+  "background_color": "#ffffff"
+}

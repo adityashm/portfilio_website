@@ -6,7 +6,7 @@
 
 [build.environment]
   # Environment variables can be set here or in Netlify dashboard
-  VITE_API_URL = "https://adityashm.me"
+  VITE_API_URL = "https://adityashm.tech"
 
 # Redirect all routes to index.html for SPA routing
 [[redirects]]
@@ -27,6 +27,8 @@
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://vbxjdrxsnahyaodirxaq.supabase.co https://api.github.com https://web-production-c117d.up.railway.app https://web-production-a281.up.railway.app https://*.up.railway.app;"
+
 
 # Preload critical assets
 [[headers]]

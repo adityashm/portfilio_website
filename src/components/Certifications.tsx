@@ -1,100 +1,61 @@
-import { Award } from 'lucide-react';
+import { Award, ExternalLink } from 'lucide-react';
+import { certificationsData } from '../data/portfolioData';
+import SectionReveal from './animations/SectionReveal';
+import TiltCard from './animations/TiltCard';
+import { StaggerContainer, StaggerItem } from './animations/StaggerContainer';
 
 const Certifications = () => {
-  const certifications = [
-    {
-      title: 'Deloitte Australia - Cyber Job Simulation',
-      issuer: 'Forage',
-      date: 'Jul 2025',
-      credentialId: 'ttwEQC4uXrticcRDL',
-      link: 'https://forage.com/simulations/ttwEQC4uXrticcRDL'
-    },
-    {
-      title: 'Deloitte Australia - Data Analytics Job Simulation',
-      issuer: 'Forage',
-      date: 'Jul 2025',
-      credentialId: 'avYGWxfBtoGzkTfRp',
-      link: 'https://forage.com/simulations/avYGWxfBtoGzkTfRp'
-    },
-    {
-      title: 'Tata - Data Visualisation: Empowering Business with Effective Insights Job Simulation',
-      issuer: 'Forage',
-      date: 'Jul 2025',
-      credentialId: 'XrxgqYdQ7fTTWPrdd',
-      link: 'https://forage.com/simulations/XrxgqYdQ7fTTWPrdd'
-    },
-    {
-      title: 'Programming for Everybody',
-      issuer: 'University of Michigan',
-      date: 'Apr 2024',
-      credentialId: 'TQNT2TS885BR',
-      link: 'https://www.coursera.org/account/accomplishments/verify/TQNT2TS885BR'
-    },
-    {
-      title: 'Python (Basic)',
-      issuer: 'Hacker Rank',
-      date: 'Apr 2024',
-      credentialId: '99cd52db45dd',
-      link: 'https://www.hackerrank.com/certificates/99cd52db45dd'
-    },
-    {
-      title: 'Responsible AI: Applying AI Principles with Google Cloud',
-      issuer: 'Google',
-      date: 'May 2024',
-      credentialId: 'GOOGLE-8957127',
-      link: 'https://www.cloudskillsboost.google/public_profiles/244b393c-66e4-4e6b-9155-5ecfcd510c75/badges/8957127'
-    },
-    {
-      title: 'Introduction to Large Language Models',
-      issuer: 'Google',
-      date: 'May 2024',
-      credentialId: 'GOOGLE-8858720',
-      link: 'https://www.cloudskillsboost.google/public_profiles/244b393c-66e4-4e6b-9155-5ecfcd510c75/badges/8858720'
-    },
-  ];
-
   return (
-    <section id="certifications" className="py-16 md:py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 dark:text-white mb-8 md:mb-12">
-          Certifications & Trainings
-        </h2>
+    <section id="certifications" className="py-24 relative z-10 bg-transparent text-white">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        <SectionReveal direction="up">
+          <div className="text-center mb-12">
+            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-cyan-400 block mb-2">
+              VERIFIED CREDENTIALS
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 tracking-tight">
+              Certifications & Trainings
+            </h2>
+          </div>
+        </SectionReveal>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {certifications.map((cert, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-900 rounded-lg p-5 md:p-6 shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div className="flex items-start gap-3 md:gap-4">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg flex-shrink-0">
-                  <Award className="text-blue-600 dark:text-blue-400 w-5 h-5" />
+        <StaggerContainer className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          {certificationsData.map((cert, index) => (
+            <StaggerItem key={index} className="h-full">
+              <TiltCard glowColor="violet" className="p-6 h-full border border-white/10 hover:border-violet-500/40">
+                <div className="flex items-start gap-4 h-full">
+                  <div className="p-2.5 bg-violet-950/60 border border-violet-500/30 text-violet-400 rounded-xl shrink-0 shadow-[0_0_10px_rgba(139,92,246,0.2)]">
+                    <Award className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="text-base md:text-lg font-extrabold text-white mb-1 break-words tracking-tight">
+                        {cert.title}
+                      </h3>
+                      <p className="text-sm font-semibold text-cyan-400 mb-1">
+                        {cert.issuer}
+                      </p>
+                      <p className="text-xs font-mono text-slate-400 mb-3">
+                        {cert.date}
+                      </p>
+                    </div>
+                    {cert.link && cert.link !== '#' && (
+                      <a
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs md:text-sm font-semibold text-cyan-300 hover:text-cyan-200 hover:underline transition-colors mt-2 focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:outline-none rounded"
+                      >
+                        <span>View Certificate</span>
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-1 break-words">
-                    {cert.title}
-                  </h3>
-                  <p className="text-sm text-blue-600 dark:text-blue-400 mb-1">
-                    {cert.issuer}
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mb-2">
-                    {cert.date}
-                  </p>
-                  {cert.link && cert.link !== '#' && (
-                    <a
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 dark:text-blue-400 hover:underline text-xs md:text-sm inline-block"
-                    >
-                      View Certificate →
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
+              </TiltCard>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

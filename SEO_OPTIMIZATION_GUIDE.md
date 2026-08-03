@@ -6,7 +6,7 @@
 - ✅ Enhanced title: "Aditya Sharma - Full Stack Developer | Python React FastAPI Specialist"
 - ✅ Added "Aditya" and "Aditya Sharma" to keywords
 - ✅ Improved meta description with location-based keywords
-- ✅ Added canonical URL: https://adityashm.me/
+- ✅ Added canonical URL: https://adityashm.tech/
 - ✅ Added robots meta tags for proper indexing
 - ✅ Added revisit-after, language, and subject meta tags
 
