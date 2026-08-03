@@ -21,8 +21,8 @@ export default function FloatingGeometries() {
 
   return (
     <group>
-      {/* Glassmorphic Icosahedron floating near Hero */}
-      <Float speed={2} rotationIntensity={1.5} floatIntensity={2} position={[4, 2, -3]}>
+      {/* Glassmorphic Icosahedron floating near About/Skills section */}
+      <Float speed={2} rotationIntensity={1.5} floatIntensity={2} position={[5, -10, -5]}>
         <mesh ref={meshRef1}>
           <icosahedronGeometry args={[1.8, 0]} />
           <meshPhysicalMaterial
@@ -39,15 +39,20 @@ export default function FloatingGeometries() {
         </mesh>
       </Float>
 
-      {/* Cyber Wireframe Torus floating near Skills */}
-      <Float speed={1.5} rotationIntensity={2} floatIntensity={1.5} position={[-5, -8, -4]}>
+      {/* Glassmorphic Octahedron floating near Projects section */}
+      <Float speed={1.5} rotationIntensity={2} floatIntensity={1.5} position={[-6, -18, -4]}>
         <mesh ref={meshRef2}>
-          <torusGeometry args={[2.2, 0.4, 16, 50]} />
-          <meshStandardMaterial
-            color="#8b5cf6"
-            emissive="#8b5cf6"
-            emissiveIntensity={0.5}
-            wireframe
+          <octahedronGeometry args={[2.0, 0]} />
+          <meshPhysicalMaterial
+            color="#a855f7"
+            emissive="#a855f7"
+            emissiveIntensity={0.3}
+            roughness={0.15}
+            metalness={0.2}
+            transmission={0.5}
+            thickness={1.0}
+            transparent
+            opacity={0.65}
           />
         </mesh>
       </Float>

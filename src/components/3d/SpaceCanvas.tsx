@@ -35,7 +35,7 @@ export default function SpaceCanvas() {
         >
           <Suspense fallback={null}>
             <SceneLighting />
-            <StarfieldParticles count={8000} />
+            <StarfieldParticles count={2500} />
             <FloatingGeometries />
             <CameraRig />
             {isDark && <PostProcessingStack />}

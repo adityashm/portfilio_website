@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import SpaceCanvas from './3d/SpaceCanvas';
 import { useTheme } from '../context/ThemeContext';
 
 interface LayoutProps {
@@ -13,9 +12,6 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="relative min-h-screen bg-[#030712] text-slate-100 dark:bg-[#030712] dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
-      {/* Persistent 3D WebGL Canvas Background */}
-      <SpaceCanvas />
-
       {/* Interactive Content Overlay */}
       <div className="relative z-10">
         <Header isDark={isDark} toggleTheme={toggleTheme} />
