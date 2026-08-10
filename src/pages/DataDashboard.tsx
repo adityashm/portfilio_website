@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { BarChart3, TrendingUp, Database, Download, RefreshCw, Filter, FileText, ArrowUpRight, Cpu } from 'lucide-react';
 import Layout from '../components/Layout';
 import SectionReveal from '../components/animations/SectionReveal';
@@ -76,13 +76,11 @@ export default function DataDashboard() {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Data Analysis & Visualization Dashboard | Aditya Sharma</title>
-        <meta
-          name="description"
-          content="Interactive full-stack data analytics and visualization dashboard built with Python, Flask, SQLite, and React."
-        />
-      </Helmet>
+      <SEO 
+        title="Data Analysis & Visualization Dashboard | Aditya Sharma" 
+        description="Interactive full-stack data analytics and visualization dashboard built with Python, Flask, SQLite, and React." 
+        url="https://adityashm.tech/data-dashboard" 
+      />
 
       <div className="py-24 container mx-auto px-4 md:px-6 max-w-7xl">
         {/* Header Section */}

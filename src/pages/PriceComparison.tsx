@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Search, TrendingDown, Bell, Tag, AlertTriangle, Cpu } from 'lucide-react';
 import Layout from '../components/Layout';
 import SectionReveal from '../components/animations/SectionReveal';
@@ -161,18 +161,11 @@ export default function PriceComparison() {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Price Comparison Tool | Aditya Sharma</title>
-        <meta name="description" content="Compare product prices across major e-commerce platforms in real-time and set custom price drop alerts." />
-        <link rel="canonical" href="https://adityashm.tech/price-comparison" />
-        <meta property="og:title" content="Price Comparison Tool | Aditya Sharma" />
-        <meta property="og:description" content="Compare product prices across major e-commerce platforms in real-time and set custom price drop alerts." />
-        <meta property="og:url" content="https://adityashm.tech/price-comparison" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Price Comparison Tool | Aditya Sharma" />
-        <meta name="twitter:description" content="Compare product prices across major e-commerce platforms in real-time and set custom price drop alerts." />
-      </Helmet>
+      <SEO 
+        title="Amazon vs Flipkart Price Comparison | Aditya Sharma" 
+        description="Real-time multi-threaded web scraper comparing product prices between Amazon and Flipkart using Python and BeautifulSoup4." 
+        url="https://adityashm.tech/price-comparison" 
+      />
       <div className="min-h-screen bg-transparent text-white pt-24 pb-16 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}

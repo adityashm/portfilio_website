@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { PlusCircle, TrendingUp, DollarSign, PieChart as PieChartIcon, Lightbulb, AlertTriangle, Cpu } from 'lucide-react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import Layout from '../components/Layout';
@@ -303,18 +303,11 @@ export default function ExpenseTracker() {
   if (!userId) {
     return (
       <Layout>
-        <Helmet>
-          <title>Expense Tracker | Aditya Sharma</title>
-          <meta name="description" content="Personal financial management dashboard with intelligent category breakdown and AI-driven budget recommendations." />
-          <link rel="canonical" href="https://adityashm.tech/expense-tracker" />
-          <meta property="og:title" content="Expense Tracker | Aditya Sharma" />
-          <meta property="og:description" content="Personal financial management dashboard with intelligent category breakdown and AI-driven budget recommendations." />
-          <meta property="og:url" content="https://adityashm.tech/expense-tracker" />
-          <meta property="og:type" content="website" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Expense Tracker | Aditya Sharma" />
-          <meta name="twitter:description" content="Personal financial management dashboard with intelligent category breakdown and AI-driven budget recommendations." />
-        </Helmet>
+        <SEO 
+          title="Expense Tracker | Aditya Sharma" 
+          description="Personal financial management dashboard with intelligent category breakdown and AI-driven budget recommendations." 
+          url="https://adityashm.tech/expense-tracker" 
+        />
         <div className="min-h-screen bg-transparent text-white flex items-center justify-center pt-24 pb-12 relative z-10">
           <SectionReveal direction="up" className="max-w-md w-full mx-4">
             <TiltCard glowColor="violet" className="p-8 border border-white/10 shadow-2xl">
@@ -386,18 +379,11 @@ export default function ExpenseTracker() {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Expense Tracker | Aditya Sharma</title>
-        <meta name="description" content="Personal financial management dashboard with intelligent category breakdown and AI-driven budget recommendations." />
-        <link rel="canonical" href="https://adityashm.tech/expense-tracker" />
-        <meta property="og:title" content="Expense Tracker | Aditya Sharma" />
-        <meta property="og:description" content="Personal financial management dashboard with intelligent category breakdown and AI-driven budget recommendations." />
-        <meta property="og:url" content="https://adityashm.tech/expense-tracker" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Expense Tracker | Aditya Sharma" />
-        <meta name="twitter:description" content="Personal financial management dashboard with intelligent category breakdown and AI-driven budget recommendations." />
-      </Helmet>
+      <SEO 
+        title="Expense Tracker | Aditya Sharma" 
+        description="Personal financial management dashboard with intelligent category breakdown and AI-driven budget recommendations." 
+        url="https://adityashm.tech/expense-tracker" 
+      />
       <div className="min-h-screen bg-transparent text-white pt-24 pb-16 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}

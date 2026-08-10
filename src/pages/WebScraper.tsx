@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Terminal, Database, Play, Square, Globe, Server, CheckCircle2, Cpu } from 'lucide-react';
 import Layout from '../components/Layout';
 import SectionReveal from '../components/animations/SectionReveal';
@@ -91,13 +91,11 @@ export default function WebScraper() {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Web Scraper & SQLite Database Console | Aditya Sharma</title>
-        <meta
-          name="description"
-          content="Production-ready web scraper and database crawler console with multi-threaded scheduling, BeautifulSoup4 parsing, and SQLite3 storage."
-        />
-      </Helmet>
+      <SEO 
+        title="Web Scraper & SQLite Database Console | Aditya Sharma" 
+        description="Production-ready web scraper and database crawler console with multi-threaded scheduling, BeautifulSoup4 parsing, and SQLite3 storage." 
+        url="https://adityashm.tech/web-scraper" 
+      />
 
       <div className="py-24 container mx-auto px-4 md:px-6 max-w-7xl">
         {/* Header Section */}

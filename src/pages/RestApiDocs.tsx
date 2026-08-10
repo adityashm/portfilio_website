@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Send, CheckCircle2, ShieldCheck, Database, Key, Terminal, ExternalLink, Cpu } from 'lucide-react';
 import Layout from '../components/Layout';
 import SectionReveal from '../components/animations/SectionReveal';
@@ -103,13 +103,11 @@ export default function RestApiDocs() {
 
   return (
     <Layout>
-      <Helmet>
-        <title>REST API Backend with Authentication | Aditya Sharma</title>
-        <meta
-          name="description"
-          content="Interactive Swagger-style API documentation and sandbox for FastAPI, SQLAlchemy, JWT Authentication, and Pydantic validation."
-        />
-      </Helmet>
+      <SEO 
+        title="REST API Backend with Authentication | Aditya Sharma" 
+        description="Interactive Swagger-style API documentation and sandbox for FastAPI, SQLAlchemy, JWT Authentication, and Pydantic validation." 
+        url="https://adityashm.tech/rest-api" 
+      />
 
       <div className="py-24 container mx-auto px-4 md:px-6 max-w-7xl">
         {/* Header Section */}
