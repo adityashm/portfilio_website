@@ -7,7 +7,7 @@ export const projects: ProjectData[] = [
     technologies: ['React', 'TypeScript', 'Vite', 'Supabase', 'Tailwind CSS', 'PWA'],
     github: 'https://github.com/adityashm/multifire1',
     live: 'https://adityashm.github.io/multifire1/',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80'
+    image: '/multifire-preview.png'
   },
   {
     title: 'Price Comparison & Deal Finder',
