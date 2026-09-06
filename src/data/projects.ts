@@ -2,6 +2,14 @@ import { ProjectData } from '../types/project';
 
 export const projects: ProjectData[] = [
   {
+    title: 'MultiFire - Fire Safety CRM & ERP',
+    description: 'Enterprise-grade CRM and ERP platform designed specifically for fire safety and compliance management. Features secure quotation and invoice generation, Annual Maintenance Contracts (AMC) tracking, customer management, inventory control, and a progressive web app (PWA) interface with robust Supabase Row Level Security (RLS).',
+    technologies: ['React', 'TypeScript', 'Vite', 'Supabase', 'Tailwind CSS', 'PWA'],
+    github: 'https://github.com/adityashm/multifire1',
+    live: '#',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80'
+  },
+  {
     title: 'Price Comparison & Deal Finder',
     description: 'Multi-platform price comparison tool with web scraping, 7-day price trends, and real-time deal alerts. Helps users find the best prices across e-commerce platforms.',
     technologies: ['Python', 'FastAPI', 'BeautifulSoup4', 'SQLite3', 'React', 'TypeScript'],
