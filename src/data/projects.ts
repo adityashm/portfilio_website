@@ -6,7 +6,7 @@ export const projects: ProjectData[] = [
     description: 'Enterprise-grade CRM and ERP platform designed specifically for fire safety and compliance management. Features secure quotation and invoice generation, Annual Maintenance Contracts (AMC) tracking, customer management, inventory control, and a progressive web app (PWA) interface with robust Supabase Row Level Security (RLS).',
     technologies: ['React', 'TypeScript', 'Vite', 'Supabase', 'Tailwind CSS', 'PWA'],
     github: 'https://github.com/adityashm/multifire1',
-    live: '#',
+    live: 'https://adityashm.github.io/multifire1/',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80'
   },
   {
