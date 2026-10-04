@@ -473,7 +473,7 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
   const actualCurveWidth = Math.min(540, viewportWidth * 0.42);
   const actualCurveHeight = Math.min(190, viewportHeight * 0.26);
   const actualDepth = Math.min(480, viewportWidth * 0.38);
-  const orbitRotation = 280;
+  const orbitRotation = 380; // Full 360+ spin to show all projects
   const orbitOffsetY = -24;
 
   // Title Animations: Transition smoothly as cards enter and flatten
@@ -487,8 +487,8 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
   const rightTitleOffset = titleFinalOffset;
 
 
-  const orbitProgress = smootherstep(0.05, 0.75, progress);
-  const centerCopyOpacity = 1 - smootherstep(0.60, 0.70, progress);
+  const orbitProgress = smootherstep(0.00, 0.85, progress);
+  const centerCopyOpacity = 1 - smootherstep(0.70, 0.80, progress);
 
   // Settled Grid Header opacity (fades in cleanly above settled grid)
   const gridHeaderOpacity = smootherstep(0.70, 0.80, progress);
@@ -520,14 +520,7 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
         }}
         className="flex items-center justify-center bg-transparent"
       >
-        {/* Ambient Cosmic Radial Glows */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(circle at 50% 45%, rgba(0, 240, 255, 0.08) 0%, rgba(3, 7, 18, 0) 70%)',
-          }}
-        />
+
 
         {/* Dynamic Titles */}
         <div
@@ -632,9 +625,9 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
             const revealEnd = 0.14 + index * 0.01;
             const cardReveal = smootherstep(revealStart, revealEnd, progress);
 
-            // Cards flatten by progress ~ 0.85 so visitors have a generous stationary dwell window
-            const flattenStart = 0.65 + index * 0.016;
-            const flattenEnd = Math.min(0.80 + index * 0.016, 0.88);
+            // Cards flatten very late in the scroll so the orbit is the main focus
+            const flattenStart = 0.80 + index * 0.016;
+            const flattenEnd = Math.min(0.92 + index * 0.016, 0.98);
             const flattenProgress = smootherstep(flattenStart, flattenEnd, progress);
 
             const baseAngle = (index / Math.max(itemCount, 1)) * 360 - 125;
