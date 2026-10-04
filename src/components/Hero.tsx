@@ -1,13 +1,24 @@
 import { Github, Linkedin, Mail, FileText, Code2 } from 'lucide-react';
+import Silk from './3d/Silk';
+
 const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center bg-transparent overflow-hidden">
-      {/* Clean Static Obsidian Ambient Glow Background (No Animation) */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#030712] via-[#0b1120] to-[#030712]" />
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
+      {/* Interactive Cyber-Silk WebGL Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-45">
+        <Silk 
+          speed={3.5} 
+          scale={1.15} 
+          color="#1e1b4b" 
+          noiseIntensity={1.2} 
+          rotation={0.35} 
+        />
       </div>
+
+      {/* Atmospheric Vignette & High-Contrast Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-t from-[#030712] via-transparent to-[#030712]/60" />
+      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#030712]/40 to-[#030712]" />
+
       <div className="relative z-10 container mx-auto px-6 py-20 md:py-32">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="md:w-1/2 text-center md:text-left">
