@@ -448,30 +448,37 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
   const itemCount = projects.length;
 
   const desktopColumns = 3;
-  const gridGap = 20;
+  const gridGap = Math.min(20, Math.max(12, viewportWidth * 0.014));
   const gridMaxWidth = 1220;
-  const gridPositionY = 53; // % from top in settled grid
+  const cardAspect = 1.48;
+  const rows = Math.ceil(itemCount / desktopColumns);
+
+  // Height-aware bounds: Guarantee both rows fit comfortably within the viewport
+  const maxAllowedGridHeight = Math.max(viewportHeight * 0.60, 360);
+  const maxCardHeightFromHeight = (maxAllowedGridHeight - gridGap * (rows - 1)) / rows;
+  const maxCardWidthFromHeight = maxCardHeightFromHeight * cardAspect;
 
   const availableGridWidth = Math.max(viewportWidth - 96, 200);
-  const finalGridWidth = Math.min(gridMaxWidth, availableGridWidth);
-  const finalCardWidth = Math.max(120, (finalGridWidth - gridGap * (desktopColumns - 1)) / desktopColumns);
-  const cardAspect = 1.48;
+  const widthLimitedGridWidth = Math.min(gridMaxWidth, availableGridWidth);
+  const widthLimitedCardWidth = Math.max(120, (widthLimitedGridWidth - gridGap * (desktopColumns - 1)) / desktopColumns);
+
+  const finalCardWidth = Math.min(widthLimitedCardWidth, maxCardWidthFromHeight);
   const finalCardHeight = finalCardWidth / cardAspect;
-  const rows = Math.ceil(itemCount / desktopColumns);
-  const finalGridHeight = rows * finalCardHeight + Math.max(rows - 1, 0) * gridGap;
+  const finalGridWidth = finalCardWidth * desktopColumns + gridGap * (desktopColumns - 1);
+  const finalGridHeight = rows * finalCardHeight + gridGap * (rows - 1);
 
   // Orbit 3D parameters
-  const actualArcCardWidth = Math.min(410, viewportWidth * 0.28);
+  const actualArcCardWidth = Math.min(390, Math.max(250, viewportWidth * 0.26));
   const actualArcCardHeight = actualArcCardWidth / cardAspect;
-  const actualCurveWidth = Math.min(580, viewportWidth * 0.44);
-  const actualCurveHeight = Math.min(220, viewportHeight * 0.3);
-  const actualDepth = Math.min(540, viewportWidth * 0.42);
-  const orbitRotation = 300;
-  const orbitOffsetY = -35;
+  const actualCurveWidth = Math.min(540, viewportWidth * 0.42);
+  const actualCurveHeight = Math.min(190, viewportHeight * 0.26);
+  const actualDepth = Math.min(480, viewportWidth * 0.38);
+  const orbitRotation = 280;
+  const orbitOffsetY = -24;
 
-  // Title Animations
-  const titleEnterProgress = smootherstep(0, 0.2, progress);
-  const titleExitProgress = smootherstep(0.72, 0.94, progress);
+  // Title Animations: Transition smoothly as cards enter and flatten
+  const titleEnterProgress = smootherstep(0, 0.14, progress);
+  const titleExitProgress = smootherstep(0.32, 0.46, progress);
   const titleOpacity = titleEnterProgress * (1 - titleExitProgress);
   const titleVerticalShift = lerp(32, 0, titleEnterProgress);
 
@@ -481,9 +488,12 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
   const leftTitleOffset = lerp(titleOutsideOffset, titleFinalOffset, titleEnterProgress);
   const rightTitleOffset = lerp(titleOutsideOffset, titleFinalOffset, titleEnterProgress);
 
-  const revealProgress = smootherstep(0, 0.17, progress);
-  const orbitProgress = smootherstep(0.04, 0.72, progress);
-  const centerCopyOpacity = smootherstep(0.12, 0.25, progress) * (1 - smootherstep(0.58, 0.82, progress));
+  const revealProgress = smootherstep(0, 0.10, progress);
+  const orbitProgress = smootherstep(0.02, 0.42, progress);
+  const centerCopyOpacity = smootherstep(0.08, 0.16, progress) * (1 - smootherstep(0.30, 0.42, progress));
+
+  // Settled Grid Header opacity (fades in cleanly above settled grid)
+  const gridHeaderOpacity = smootherstep(0.44, 0.56, progress);
 
   return (
     <section
@@ -589,6 +599,27 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
           {centerText}
         </div>
 
+        {/* Settled Grid Header - Fades in as cards snap into 3x2 grid */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: `calc(50% - ${finalGridHeight / 2 + 58}px)`,
+            transform: 'translateX(-50%)',
+            opacity: gridHeaderOpacity,
+            zIndex: 25,
+            pointerEvents: gridHeaderOpacity < 0.2 ? 'none' : 'auto',
+          }}
+          className="text-center w-full max-w-xl px-4 transition-opacity duration-300 select-none"
+        >
+          <span className="text-xs font-mono font-semibold tracking-widest text-cyan-400 uppercase block mb-1 drop-shadow">
+            PORTFOLIO SHOWCASE
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400">
+            Featured Projects
+          </h2>
+        </div>
+
         {/* 3D Orbiting Cards Layer */}
         <div
           style={{
@@ -599,12 +630,13 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
           }}
         >
           {projects.map((project, index) => {
-            const revealStart = 0.025 + index * 0.01;
-            const revealEnd = 0.18 + index * 0.012;
+            const revealStart = 0.02 + index * 0.01;
+            const revealEnd = 0.14 + index * 0.01;
             const cardReveal = smootherstep(revealStart, revealEnd, progress);
 
-            const flattenStart = 0.55 + index * 0.009;
-            const flattenEnd = Math.min(0.91 + index * 0.009, 0.99);
+            // Cards flatten by progress ~ 0.58 so visitors have a generous stationary dwell window
+            const flattenStart = 0.36 + index * 0.016;
+            const flattenEnd = Math.min(0.50 + index * 0.016, 0.58);
             const flattenProgress = smootherstep(flattenStart, flattenEnd, progress);
 
             const baseAngle = (index / Math.max(itemCount, 1)) * 360 - 125;
@@ -627,16 +659,13 @@ export const OrbitProjects: React.FC<OrbitProjectsProps> = ({
             const arcLeft = arcCenterX - actualArcCardWidth / 2;
             const arcTop = arcCenterY - actualArcCardHeight / 2 + entranceOffset;
 
-            // Target position in 3x2 settled grid
+            // Target position in 3x2 settled grid (cleanly centered with header offset)
             const column = index % desktopColumns;
             const row = Math.floor(index / desktopColumns);
 
             const gridLeft = -finalGridWidth / 2 + column * (finalCardWidth + gridGap);
             const gridTop =
-              viewportHeight * (gridPositionY / 100) -
-              viewportHeight / 2 -
-              finalGridHeight / 2 +
-              row * (finalCardHeight + gridGap);
+              -finalGridHeight / 2 + 16 + row * (finalCardHeight + gridGap);
 
             // Interpolate from 3D Orbit into settled grid
             const width = lerp(actualArcCardWidth, finalCardWidth, flattenProgress);
