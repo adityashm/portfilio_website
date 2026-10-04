@@ -14,7 +14,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-slate-100 dark:bg-[#030712] dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#030712] text-slate-100 dark:bg-[#030712] dark:text-slate-100 transition-colors duration-300">
       {/* Interactive Content Overlay */}
       <div className="relative z-10">
         <Header />
