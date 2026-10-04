@@ -9,7 +9,7 @@ const Projects = () => {
         leftTitle="FEATURED"
         rightTitle="PROJECTS"
         centerText="Production platforms, autonomous telemetry, and cloud systems engineered with high performance."
-        scrollLengthVh={350}
+        scrollLengthVh={220}
       />
     </section>
   );
