@@ -4,20 +4,21 @@ import Silk from './3d/Silk';
 const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center bg-transparent overflow-hidden">
-      {/* Interactive Cyber-Silk WebGL Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-45">
+      {/* Interactive Bright Cyber-Silk WebGL Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-80">
         <Silk 
-          speed={3.5} 
-          scale={1.15} 
-          color="#1e1b4b" 
-          noiseIntensity={1.2} 
-          rotation={0.35} 
+          speed={2.8} 
+          scale={1.2} 
+          color="#0284c7" 
+          noiseIntensity={0.85} 
+          rotation={0.4} 
+          lightMode={true}
         />
       </div>
 
-      {/* Atmospheric Vignette & High-Contrast Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-t from-[#030712] via-transparent to-[#030712]/60" />
-      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#030712]/40 to-[#030712]" />
+      {/* Atmospheric Soft Bottom Blend for Clean Text Contrast */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-t from-[#030712] via-[#030712]/20 to-transparent" />
+      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-[#030712]/20 to-[#030712]/70" />
 
       <div className="relative z-10 container mx-auto px-6 py-20 md:py-32">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">

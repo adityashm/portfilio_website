@@ -7,7 +7,7 @@ export const projects: ProjectData[] = [
     technologies: ['React', 'TypeScript', 'Vite', 'Supabase', 'Tailwind CSS', 'PWA'],
     github: 'https://github.com/adityashm/multifire1',
     live: 'https://adityashm.github.io/multifire1/',
-    image: '/multifire-preview.png'
+    image: '/projects/multifire-preview.png'
   },
   {
     title: 'Price Comparison & Deal Finder',
@@ -15,7 +15,7 @@ export const projects: ProjectData[] = [
     technologies: ['Python', 'FastAPI', 'BeautifulSoup4', 'SQLite3', 'React', 'TypeScript'],
     github: 'https://github.com/adityashm/price-comparison-api',
     live: '/price-comparison',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80'
+    image: '/projects/price-comparison-preview.png'
   },
   {
     title: 'Smart Expense Tracker',
@@ -23,7 +23,7 @@ export const projects: ProjectData[] = [
     technologies: ['Python', 'FastAPI', 'SQLite3', 'React', 'TypeScript', 'Recharts'],
     github: 'https://github.com/adityashm/expense-tracker-api',
     live: '/expense-tracker',
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80'
+    image: '/projects/expense-tracker-preview.png'
   },
   {
     title: 'Data Analysis & Visualization Dashboard',
@@ -31,7 +31,7 @@ export const projects: ProjectData[] = [
     technologies: ['Python', 'Flask', 'Plotly', 'SQLite'],
     github: 'https://github.com/adityashm/data-analysis-dashboard',
     live: '/data-dashboard',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80'
+    image: '/projects/data-dashboard-preview.png'
   },
   {
     title: 'Web Scraper with Database',
@@ -39,7 +39,7 @@ export const projects: ProjectData[] = [
     technologies: ['Python', 'BeautifulSoup4', 'SQLite3', 'Requests', 'Schedule'],
     github: 'https://github.com/adityashm/web-scraper-project',
     live: '/web-scraper',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80'
+    image: '/projects/web-scraper-preview.png'
   },
   {
     title: 'REST API Backend with Authentication',
@@ -47,6 +47,6 @@ export const projects: ProjectData[] = [
     technologies: ['Python', 'FastAPI', 'SQLAlchemy', 'JWT', 'Pydantic'],
     github: 'https://github.com/adityashm/rest-api-backend',
     live: '/rest-api',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80'
+    image: '/projects/rest-api-preview.png'
   }
 ];
